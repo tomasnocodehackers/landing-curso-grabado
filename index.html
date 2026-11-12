@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Claude para Profesionales en Madrid</title>
+<link rel="icon" type="image/jpeg" href="assets/favicon.jpg" />
+<link rel="apple-touch-icon" href="assets/favicon.jpg" />
+<style>
+@font-face {
+  font-family: 'KMR Waldenburg';
+  src: url('assets/fonts/KMRWaldenburg-Regular.woff2') format('woff2');
+  font-weight: 100 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'KMR Waldenburg';
+  src: url('assets/fonts/KMRWaldenburg-Bold.woff2') format('woff2');
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* NCH design system */
+  --ink:        #000000;
+  --ink-80:     #4B4B4B;
+  --muted:      #4B4B4B;
+  --line:       rgba(0,0,0,0.1);
+  --bg:         #ffffff;
+  --white:      #ffffff;
+
+  --lime:       #CCFF48;
+  --lime-bold:  #b3e030;
+  --green:      #00BA7B;
+  --pink:       #F3BEEF;
+  --pink-soft:  #FAE5F8;
+  --orange:     #F09000;
+
+  --font:  'KMR Waldenburg', system-ui, sans-serif;
+  --serif: var(--font);
+  --sans:  var(--font);
+  --mono:  var(--font);
+
+  --r-lg: 40px;
+  --r-md: 32px;
+  --r-sm: 12px;
+  --r-pill: 999px;
+
+  --pad: clamp(1.25rem, 4vw, 2rem);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.1;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; }
+
+/* ── STICKY HEADER WRAPPER ────────────────────── */
+.sticky-header {
+  position: sticky; top: 0; z-index: 110;
+}
+
+/* ── EARLY-BIRD BANNER ────────────────────────── */
+.eb-banner {
+  position: relative;
+  background: var(--ink); color: var(--white);
+  font-family: var(--mono);
+  font-size: 13px; letter-spacing: 0.01em;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.eb-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 0.6rem var(--pad);
+  display: flex; align-items: center; justify-content: center;
+  gap: 0.6rem 1.4rem; flex-wrap: wrap;
+  text-align: center;
+}
+.eb-inner .eb-flame {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--lime);
+  font-weight: 700;
+}
+.eb-inner .eb-flame::before {
+  content: ''; width: 7px; height: 7px;
+  background: var(--lime); border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(200,242,77,0.18);
+  animation: ebpulse 1.6s ease-in-out infinite;
+}
+@keyframes ebpulse { 50% { box-shadow: 0 0 0 7px rgba(200,242,77,0); } }
+.eb-inner strong { color: var(--white); font-weight: 700; }
+.eb-code {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--lime); color: var(--ink);
+  font-weight: 700; letter-spacing: 0.06em;
+  padding: 0.25rem 0.55rem; border-radius: 6px;
+}
+.eb-seats {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: rgba(255,255,255,0.7);
+}
+.eb-seats b { color: var(--white); font-weight: 700; }
+@media (max-width: 640px) {
+  .eb-inner { font-size: 12px; gap: 0.35rem 1rem; padding: 0.55rem var(--pad); }
+}
+
+/* ── NAV ───────────────────────────────────────── */
+nav {
+  position: relative; top: auto; z-index: auto;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: saturate(140%) blur(16px);
+  -webkit-backdrop-filter: saturate(140%) blur(16px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--pad);
+  height: 68px;
+}
+.nav-logo {
+  display: inline-flex; align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.nav-logo img {
+  display: block;
+  height: 28px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex; align-items: center; gap: 0.25rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  padding: 4px;
+}
+.nav-links a {
+  font-size: 14px; font-weight: 500;
+  color: var(--ink); text-decoration: none;
+  padding: 0.5rem 0.95rem;
+  border-radius: var(--r-pill);
+  transition: background .15s, color .15s;
+}
+.nav-links a:hover { background: rgba(0,0,0,0.06); }
+
+.nav-cta {
+  background: var(--ink); color: var(--white);
+  font-weight: 600; font-size: 14px;
+  padding: 0.65rem 1.15rem;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: transform .15s, background .15s;
+}
+.nav-cta:hover { background: var(--ink); color: var(--lime); transform: translateY(-1px); }
+.nav-cta::after { content: '→'; font-weight: 400; transition: transform .15s; }
+.nav-cta:hover::after { transform: translateX(3px); }
+
+@media (max-width: 980px) {
+  .nav-links { display: none; }
+}
+
+/* ── SHARED ELEMENTS ───────────────────────────── */
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 500;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  background: var(--pink);
+  color: var(--ink);
+  line-height: 1.25;
+  text-align: center;
+  max-width: 100%;
+}
+.pill svg { flex-shrink: 0; }
+.pill.orange { background: var(--orange); color: var(--white); }
+.pill.lime   { background: var(--lime);   color: var(--ink); }
+.pill.dark   { background: var(--ink);    color: var(--white); }
+.pill.navy   { background: #3576F6;       color: var(--white); }
+.pill.green  { background: var(--green);  color: var(--white); }
+.pill.purple { background: #43015D;       color: var(--white); }
+
+h1, h2, h3 { font-family: var(--font); font-weight: 400; letter-spacing: -0.02em; text-wrap: balance; }
+em, i { font-style: normal; }
+
+/* ── HERO ──────────────────────────────────────── */
+.hero {
+  padding: clamp(3rem, 8vw, 6rem) 0 clamp(2rem, 5vw, 4rem);
+}
+.hero-inner { text-align: center; }
+.hero .pill { margin-bottom: 2rem; }
+h1 {
+  font-size: clamp(2.25rem, 7.5vw, 6.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.034em;
+  max-width: 14ch;
+  margin: 0 auto;
+  padding-bottom: 0.1em;
+}
+h1 em {
+  font-style: normal;
+  color: var(--ink);
+  position: relative;
+  white-space: nowrap;
+}
+h1 em::after {
+  content: '';
+  position: absolute; left: -0.05em; right: -0.05em;
+  bottom: 0.1em; height: 0.32em;
+  background: var(--lime);
+  z-index: -1;
+  border-radius: 4px;
+}
+.hero-sub {
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  color: var(--muted);
+  max-width: 52ch;
+  margin: 2.25rem auto 0;
+  line-height: 1.1;
+}
+.hero-actions {
+  display: flex; justify-content: center; align-items: center;
+  gap: 0.75rem; flex-wrap: wrap;
+  margin-top: 2.25rem;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 600; font-size: 15px;
+  padding: 0.95rem 1.6rem;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform .15s, background .15s, border-color .15s;
+}
+.btn-primary { background: var(--ink); color: var(--white); }
+.btn-primary:hover { background: var(--ink); color: var(--lime); transform: translateY(-1px); }
+.btn-primary .arrow { transition: transform .15s; }
+.btn-primary:hover .arrow { transform: translateX(3px); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn-ghost:hover { background: var(--ink); color: var(--white); }
+
+/* meta strip under hero */
+.meta-strip {
+  margin-top: 3.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: center;
+  gap: 1.25rem 3.5rem;
+  text-align: center;
+}
+.meta-strip .ml {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+.meta-strip .mv {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+/* trailer */
+.hero-video { margin-top: clamp(2.5rem, 6vw, 4.5rem); }
+.video-frame {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: #000;
+}
+.video-frame iframe, .video-thumb, .video-thumb img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; border: 0; display: block;
+}
+.video-thumb img { object-fit: cover; }
+.video-thumb:focus-visible { outline: 3px solid var(--lime); outline-offset: -3px; }
+.video-play {
+  position: absolute; left: 50%; top: 50%;
+  width: clamp(64px, 9vw, 92px); aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%; background: var(--white);
+  display: grid; place-items: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+  transition: transform .15s;
+}
+.video-play svg { width: 38%; margin-left: 7%; fill: var(--ink); }
+.video-thumb:hover .video-play { transform: translate(-50%, -50%) scale(1.06); }
+
+/* ── HERO HERO CARD (big color block) ────────── */
+.hero-card-row {
+  margin-top: clamp(2.5rem, 6vw, 4.5rem);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 1rem;
+}
+@media (max-width: 820px) { .hero-card-row { grid-template-columns: 1fr; } }
+.hcard {
+  border-radius: var(--r-lg);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  min-height: 320px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.hcard.dark { background: var(--ink); color: var(--white); }
+.hcard.lime { background: var(--lime); color: var(--ink); }
+.hcard h3 {
+  font-family: var(--serif);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
+}
+.hcard p { font-size: 15px; line-height: 1.1; opacity: 0.8; max-width: 32ch; }
+.hcard .tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--font); font-size: 12px; font-weight: 500;
+  letter-spacing: 0;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  padding: 0.3rem 0.65rem;
+  opacity: 0.6;
+  margin-bottom: 0.75rem;
+}
+.hcard .big-num {
+  font-family: var(--serif);
+  font-size: clamp(5rem, 12vw, 10rem);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+}
+.hcard .big-num em { font-style: italic; }
+.hcard .cap {
+  font-size: 13px; color: inherit; opacity: 0.7;
+  margin-top: 0.5rem;
+}
+
+/* terminal look inside dark card */
+.term {
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.9);
+  margin-top: 1.5rem;
+}
+.term .c-dim { color: rgba(255,255,255,0.45); }
+.term .c-lime { color: var(--lime); }
+.term .c-pink { color: var(--pink); }
+.term .caret {
+  display: inline-block; width: 8px; height: 14px;
+  background: var(--lime); vertical-align: -2px;
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ── SECTION BASE ──────────────────────────────── */
+section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
+.sec-head { max-width: 820px; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.sec-head .pill { margin-bottom: 1.25rem; }
+h2 {
+  font-family: var(--font);
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.021em;
+  max-width: 18ch;
+}
+h2 em { font-style: normal; }
+h2 .u {
+  background: var(--lime);
+  padding: 0 0.08em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.sec-desc {
+  color: var(--muted);
+  font-size: clamp(1rem, 1.3vw, 1.0625rem);
+  max-width: 58ch;
+  line-height: 1.1;
+  margin-top: 1.25rem;
+}
+
+/* ── PARA QUIÉN ────────────────────────────────── */
+.for-who-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.875rem;
+}
+@media (max-width: 980px) { .for-who-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .for-who-grid { grid-template-columns: 1fr; } }
+.wcard {
+  background: #F2F2F2;
+  border-radius: var(--r-md);
+  padding: 1.75rem 1.5rem;
+  display: flex; flex-direction: column; gap: 1rem;
+  min-height: 240px;
+  transition: transform .2s, background .2s;
+}
+.wcard:hover { transform: rotate(1.5deg); background: var(--lime); }
+.wcard .n {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--font); font-size: 12px; font-weight: 500;
+  letter-spacing: 0;
+  background: var(--white);
+  border-radius: 8px;
+  padding: 0.3rem 0.65rem;
+  color: var(--ink);
+  opacity: 0.8;
+  margin-bottom: calc(2rem - 1rem);
+}
+.wcard h4 {
+  font-family: var(--font); font-weight: 400;
+  font-size: 1.375rem;
+  line-height: 1.1; letter-spacing: -0.02em;
+  margin-top: auto;
+  color: var(--ink);
+}
+.wcard p { font-size: 14px; color: var(--muted); line-height: 1.1; }
+.wcard.accent-lime  { background: #F2F2F2; }
+.wcard.accent-lime .n, .wcard.accent-lime p { color: var(--muted); }
+.wcard.accent-dark  { background: #F2F2F2; color: var(--ink); }
+.wcard.accent-dark .n, .wcard.accent-dark p { color: var(--muted); }
+.wcard.accent-pink  { background: #F2F2F2; }
+.wcard.accent-lime:hover, .wcard.accent-dark:hover, .wcard.accent-pink:hover { background: var(--lime); }
+
+/* ── PILARES (two hero color blocks) ──────────── */
+.pilares-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+@media (max-width: 820px) { .pilares-grid { grid-template-columns: 1fr; } }
+.pilar {
+  border-radius: var(--r-lg);
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  min-height: 420px;
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+}
+.pilar.green { background: #F2F2F2; color: var(--ink); }
+.pilar.pink  { background: #F2F2F2; color: var(--ink); }
+.pilar .tag {
+  display: inline-block;
+  background: var(--white);
+  font-family: var(--font); font-size: 12px; font-weight: 500;
+  letter-spacing: 0;
+  padding: 0.3rem 0.65rem;
+  border-radius: 8px;
+  margin-bottom: auto;
+  color: var(--ink);
+  align-self: flex-start;
+}
+.pilar.green .tag { background: var(--lime); color: var(--ink); }
+.pilar.pink  .tag { background: var(--orange); color: var(--white); }
+.pilar h3 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.02;
+  margin-bottom: 1rem;
+}
+.pilar p {
+  font-size: 15px; line-height: 1.1;
+  max-width: 36ch;
+  opacity: 0.9;
+}
+.pilar ul {
+  list-style: none; margin-top: 1.5rem;
+  display: flex; flex-direction: column; gap: 0.5rem;
+  font-size: 14px;
+}
+.pilar ul li {
+  padding-left: 1.25rem; position: relative;
+  opacity: 0.9;
+}
+.pilar ul li::before {
+  content: '✱'; position: absolute; left: 0; top: 0;
+  font-size: 12px;
+}
+
+/* visual top-right ornament on pilar cards */
+.pilar-deco {
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  opacity: 0.25;
+  pointer-events: none;
+}
+.pilar.green .pilar-deco { background: radial-gradient(circle, rgba(255,255,255,0.6), transparent 65%); }
+.pilar.pink  .pilar-deco { background: radial-gradient(circle, rgba(255,255,255,0.8), transparent 65%); }
+
+/* ── TEMARIO (modules) ─────────────────────────── */
+.syllabus-wrap { margin-top: 2.5rem; display: grid; gap: 12px; }
+.mod {
+  background: #F2F2F2;
+  border-radius: var(--r-md);
+  padding: 2rem 2.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr 1.4fr;
+  gap: 1rem 2rem;
+  align-items: start;
+}
+.mod:hover { background: #F2F2F2; }
+.mod.is-lime { background: #F2F2F2; }
+.mod.is-dark { background: #F2F2F2; color: var(--ink); }
+.mod.is-dark ul li { color: var(--muted); }
+.mod.is-dark ul li::before { color: var(--ink); }
+.mod-num {
+  font-family: var(--font);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  color: rgba(0,0,0,0.12);
+  line-height: 1;
+  align-self: center;
+}
+.mod-title {
+  font-family: var(--font); font-size: clamp(1.375rem, 2vw, 2rem);
+  line-height: 1.1; letter-spacing: -0.02em;
+  margin-top: 0.5rem;
+}
+.mod-track {
+  display: inline-block;
+  background: var(--white);
+  border-radius: 8px;
+  padding: 0.3rem 0.75rem;
+  font-family: var(--font);
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+}
+.mod-track[data-track="vibe"] { background: var(--lime); }
+.mod-track[data-track="cowork"] { background: var(--orange); color: var(--white); }
+.mod-track[data-track="cierre"] { background: var(--ink); color: var(--white); }
+.mod ul {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 0.6rem;
+  font-size: 14px; color: var(--muted);
+  padding-top: 0.25rem;
+}
+.mod ul li {
+  padding-left: 1.25rem; position: relative;
+  line-height: 1.3;
+}
+.mod ul li::before {
+  content: '○'; position: absolute; left: 0;
+  font-size: 11px; color: var(--ink);
+  top: 1px;
+}
+@media (max-width: 780px) {
+  .mod { grid-template-columns: 1fr; padding: 1.5rem; gap: 1rem; }
+}
+
+/* ── INSTRUCTORES ──────────────────────────────── */
+.instructors-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+@media (max-width: 820px) { .instructors-grid { grid-template-columns: 1fr; } }
+.icard {
+  background: #F2F2F2;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.iphoto {
+  aspect-ratio: 3 / 4;
+  background: #CD71DA;
+  overflow: hidden;
+  position: relative;
+}
+.icard:nth-child(2) .iphoto { background: var(--orange); }
+.iphoto img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
+}
+.iinfo { padding: 1.75rem 1.75rem 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.iinfo .role {
+  display: inline-flex; align-self: flex-start;
+  background: var(--ink); color: var(--white);
+  font-size: 11px; font-family: var(--mono);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 8px;
+}
+.iname { font-family: var(--serif); font-size: 2rem; line-height: 1.05; letter-spacing: -0.02em; }
+.ibio { font-size: 15px; color: var(--muted); line-height: 1.1; }
+.itags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.25rem; }
+.itag {
+  font-family: var(--font); font-size: 12px; font-weight: 500;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink-80);
+  background: var(--bg);
+  letter-spacing: 0;
+}
+
+/* ── VENUE (Modulor) ──────────────────────────── */
+.venue-grid {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.875rem;
+  min-height: 560px;
+}
+.venue-grid .vimg {
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--line);
+  position: relative;
+}
+.venue-grid .vimg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+.venue-grid .vimg:hover img { transform: scale(1.03); }
+.venue-grid .vimg.feat { grid-row: 1 / span 2; }
+.venue-info {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+.venue-info .vcard {
+  background: #F2F2F2;
+  border-radius: var(--r-md);
+  padding: 1.5rem;
+  display: flex; flex-direction: column; gap: 0.4rem;
+}
+.venue-info .vcard .vlabel {
+  display: inline-block;
+  background: var(--white);
+  font-family: var(--font); font-size: 12px; font-weight: 500;
+  letter-spacing: 0;
+  border-radius: 8px;
+  padding: 0.3rem 0.65rem;
+  color: var(--ink);
+  align-self: flex-start;
+  margin-bottom: calc(2rem - 0.4rem);
+}
+.venue-info .vcard .vval {
+  font-family: var(--serif); font-size: 1.5rem;
+  line-height: 1.15; letter-spacing: -0.02em;
+}
+.venue-info .vcard.dark { background: #F2F2F2; color: var(--ink); transition: transform 0.18s ease, background 0.18s ease; cursor: default; }
+.venue-info .vcard.dark:hover { transform: rotate(1.5deg); background: var(--lime); }
+.venue-info .vcard.lime { background: #F2F2F2; }
+.venue-info .vcard a {
+  font-size: 13px; text-decoration: underline; text-underline-offset: 3px;
+  color: inherit; margin-top: auto;
+}
+@media (max-width: 820px) {
+  .venue-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    min-height: 0;
+  }
+  .venue-grid .vimg { aspect-ratio: 4 / 3; }
+  .venue-grid .vimg.feat { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 16 / 10; }
+  .venue-info { grid-template-columns: 1fr; }
+}
+
+/* ── PRICING ───────────────────────────────────── */
+.pricing-shell {
+  background: var(--ink);
+  border-radius: var(--r-lg);
+  padding: clamp(2rem, 5vw, 4rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  color: var(--white);
+}
+@media (max-width: 820px) { .pricing-shell { grid-template-columns: 1fr; gap: 2rem; } }
+.pricing-shell .pill { background: var(--lime); color: var(--ink); }
+.pricing-shell h2 { color: var(--white); }
+.pricing-shell .sec-desc { color: rgba(255,255,255,0.6); }
+.price-big {
+  font-family: var(--serif);
+  font-size: clamp(4rem, 10vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  display: flex; align-items: flex-start;
+  gap: 0.25rem;
+}
+.price-big .cur { font-size: 0.35em; padding-top: 0.75em; opacity: 0.8; }
+.price-sub {
+  font-family: var(--mono); font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  margin-top: 0.5rem; letter-spacing: 0.02em;
+}
+.plan-card {
+  background: var(--white);
+  color: var(--ink);
+  border-radius: var(--r-md);
+  padding: 1.75rem;
+}
+.plan-features {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+.plan-features li {
+  font-size: 14px;
+  display: flex; gap: 0.65rem; align-items: flex-start;
+  line-height: 1.4;
+}
+.plan-features li::before {
+  content: '✓'; flex-shrink: 0;
+  width: 20px; height: 20px;
+  background: var(--lime); color: var(--ink);
+  border-radius: 50%;
+  font-size: 11px; font-weight: 700;
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+}
+.plan-cta {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--ink); color: var(--white);
+  font-weight: 600; font-size: 15px;
+  padding: 1rem; border-radius: 8px;
+  text-decoration: none;
+  transition: background .15s;
+}
+.plan-cta:hover { background: var(--ink); color: var(--lime); }
+.plan-cta .arrow { transition: transform .15s; }
+.plan-cta:hover .arrow { transform: translateX(3px); }
+.plan-cta-secondary {
+  background: transparent; color: var(--ink);
+  border: 1.5px solid var(--ink);
+  margin-top: 0.6rem;
+}
+.plan-cta-secondary:hover { background: var(--ink); color: var(--white); }
+.plan-foot {
+  font-size: 12px; color: var(--muted);
+  text-align: center; margin-top: 0.85rem;
+  font-family: var(--mono);
+}
+
+/* ── FAQ ──────────────────────────────────────── */
+.faq-list { margin-top: 2.5rem; }
+.faq-item {
+  border-top: 1px solid var(--line);
+}
+.faq-item:last-child { border-bottom: 1px solid var(--line); }
+.faq-q {
+  width: 100%; background: transparent; border: 0;
+  color: var(--ink); font-family: var(--sans);
+  font-size: 1.125rem; font-weight: 500;
+  text-align: left;
+  padding: 1.5rem 0;
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer; gap: 1rem;
+  letter-spacing: -0.01em;
+}
+.faq-q:hover { color: var(--ink-80); }
+.chev {
+  flex-shrink: 0;
+  width: 30px; height: 30px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 400;
+  transition: transform .25s, background .2s, color .2s;
+}
+.faq-item.open .chev { transform: rotate(45deg); background: var(--ink); color: var(--lime); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+.faq-item.open .faq-a { max-height: 400px; }
+.faq-a p {
+  padding: 0 0 1.5rem;
+  font-size: 15px; color: var(--muted); line-height: 1.1;
+  max-width: 62ch;
+}
+
+/* ── CTA FINAL ─────────────────────────────────── */
+.cta-final {
+  background: var(--lime);
+  border-radius: var(--r-lg);
+  padding: clamp(3rem, 7vw, 5.5rem) clamp(1.5rem, 4vw, 3rem);
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-final .pill { background: var(--ink); color: var(--white); margin-bottom: 1.25rem; }
+.cta-final h2 { margin: 0 auto; font-size: clamp(2.25rem, 6vw, 4.5rem); }
+.cta-final p {
+  font-size: 1.0625rem; color: rgba(0,0,0,0.65);
+  max-width: 52ch; margin: 1.25rem auto 2rem; line-height: 1.1;
+}
+.cta-final .btn-primary { background: var(--ink); color: var(--white); }
+.cta-final .btn-primary:hover { background: var(--ink); color: var(--lime); transform: translateY(-1px); }
+.cta-final .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+.cta-final .btn-ghost:hover { background: var(--ink); color: var(--white); }
+.cta-final-actions {
+  display: flex; flex-wrap: wrap; gap: 0.75rem;
+  justify-content: center; align-items: center;
+}
+
+/* ── FOOTER ────────────────────────────────────── */
+footer {
+  padding: 3rem 0 2rem;
+  border-top: 1px solid var(--line);
+  margin-top: 5rem;
+  color: var(--muted);
+  font-size: 13px;
+}
+footer .foot-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+footer a { color: var(--muted); text-decoration: none; }
+footer a:hover { color: var(--ink); }
+footer .foot-brand {
+  display: inline-flex; align-items: center;
+  color: var(--ink); font-weight: 600;
+}
+footer .foot-brand img { display: block; height: 24px; width: auto; }
+
+/* utility sizing/spacing for cards */
+.full-bleed-sec { padding-left: 0; padding-right: 0; }
+
+/* Small fixes */
+::selection { background: var(--lime); color: var(--ink); }
+.pilar.green ::selection { background: var(--ink); color: var(--white); }
+.wcard:hover ::selection { background: var(--ink); color: var(--white); }
+
+/* ── RESPONSIVE POLISH ─────────────────────────── */
+@media (max-width: 820px) {
+  section { padding: clamp(2.75rem, 9vw, 4.5rem) 0; }
+  .hero { padding: clamp(2.25rem, 8vw, 4rem) 0 clamp(1.5rem, 5vw, 3rem); }
+  .hero .pill { margin-bottom: 1.5rem; }
+  .meta-strip { margin-top: 2.5rem; }
+  .hcard { min-height: 0; }
+  .hcard .big-num { font-size: clamp(4.5rem, 22vw, 8rem); }
+  .pilar { min-height: 0; }
+  .pilar-deco { width: 160px; height: 160px; top: -30px; right: -30px; }
+  .pilares-grid, .instructors-grid, .syllabus-wrap, .for-who-grid { margin-top: 1.75rem; }
+  .sec-head { margin-bottom: 1.75rem; }
+  .iname { font-size: 1.625rem; }
+  .iinfo { padding: 1.5rem 1.5rem 1.75rem; }
+  .price-big { font-size: clamp(3.5rem, 14vw, 6rem); }
+  .cta-final { padding: clamp(2.5rem, 9vw, 4rem) 1.5rem; }
+  .cta-final br { display: none; }
+}
+
+@media (max-width: 640px) {
+  :root { --pad: 1.125rem; --r-lg: 22px; --r-md: 16px; }
+  .nav-inner { height: 60px; }
+  .nav-logo img { height: 24px; }
+  .nav-cta { padding: 0.55rem 0.95rem; font-size: 13px; }
+  h1 { max-width: 18ch; text-wrap: balance; }
+  h1 em::after { height: 0.28em; bottom: 0.08em; }
+  .hero .pill { font-size: 12px; padding: 0.4rem 0.85rem; margin-bottom: 1.25rem; }
+  .hero-sub { margin-top: 1.5rem; font-size: 0.95rem; text-wrap: pretty; }
+  .hero-actions { margin-top: 1.75rem; gap: 0.5rem; }
+  .hero-actions .btn { flex: 1 1 auto; justify-content: center; padding: 0.85rem 1.1rem; font-size: 14px; }
+  .meta-strip { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
+  .meta-strip .mv { font-size: 14px; }
+  .hero-card-row { margin-top: 2.25rem; }
+  .hcard { padding: 1.5rem; }
+  .hcard h3 { font-size: 1.5rem; }
+  .hcard .tag { font-size: 10px; }
+  .term { font-size: 12px; }
+  .wcard { padding: 1.5rem 1.25rem; min-height: 0; }
+  .wcard h4 { font-size: 1.25rem; }
+  .pilar { padding: 1.75rem 1.5rem; }
+  .pilar h3 { font-size: clamp(1.625rem, 7vw, 2.25rem); }
+  .mod { padding: 1.25rem 1.5rem; gap: 1rem; grid-template-columns: 1fr; }
+  .mod-title { font-size: 1.15rem; }
+  .pricing-shell { padding: 2rem 1.5rem; gap: 1.75rem; }
+  .plan-card { padding: 1.4rem; }
+  .faq-q { font-size: 1rem; padding: 1.25rem 0; }
+  .chev { width: 26px; height: 26px; font-size: 14px; }
+  .cta-final h2 { font-size: clamp(1.875rem, 9vw, 3rem); }
+  footer { margin-top: 3rem; padding: 2rem 0 1.5rem; }
+  footer .foot-inner { flex-direction: column; align-items: flex-start; gap: 0.85rem; text-align: left; }
+}
+
+@media (max-width: 380px) {
+  .nav-cta { padding: 0.5rem 0.75rem; }
+  .nav-cta::after { display: none; }
+  h1 { font-size: clamp(2rem, 9vw, 2.5rem); }
+  .hero-actions .btn { width: 100%; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- STICKY HEADER WRAPPER ──────────────────── -->
+<div class="sticky-header">
+
+<!-- EARLY-BIRD BANNER ───────────────────────── -->
+<div class="eb-banner" role="region" aria-label="Oferta descuento">
+  <div class="eb-inner">
+    <span>Las <strong>10 primeras plazas</strong> a <strong>500€</strong> en vez de 750€</span>
+    <span>Código <span class="eb-code">CLAUDE-250OFF</span></span>
+    <span class="eb-seats">Quedan <b id="eb-seats-count">6</b>/10 plazas</span>
+  </div>
+</div>
+
+<!-- NAV ─────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" aria-label="NocodeHackers">
+      <img src="assets/logo.png" alt="NocodeHackers" />
+    </a>
+    <div class="nav-links">
+      <a href="#pilares">Taller</a>
+      <a href="#temario">Temario</a>
+      <a href="#instructores">Instructores</a>
+      <a href="#lugar">Lugar</a>
+      <a href="#inscribirse">Precio</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="https://buy.stripe.com/aFacN7ah4gQF7dL4Sv8Zq0G?prefilled_promo_code=CLAUDE-250OFF" class="nav-cta" target="_blank" rel="noopener">Plaza a 500€</a>
+  </div>
+</nav>
+</div><!-- /.sticky-header -->
+
+<!-- HERO ────────────────────────────────────── -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <span class="pill">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 11s4-3.5 4-6.5A4 4 0 1 0 2 4.5C2 7.5 6 11 6 11Z" stroke="#0A0A0A" stroke-width="1.3"/><circle cx="6" cy="4.5" r="1.3" stroke="#0A0A0A" stroke-width="1.3"/></svg>
+      <span><span style="white-space:nowrap;">Taller presencial en Madrid,</span> <span style="white-space:nowrap;">18 de noviembre</span></span>
+    </span>
+    <h1>Aprende Claude. <em>De verdad.</em></h1>
+    <p class="hero-sub">
+      Un día intensivo para construir apps reales con <strong>Vibe Coding</strong>
+      y automatizar tu trabajo con <strong>Claude Cowork</strong>. Sin código. Sin teoría de relleno. Sin excusas.
+    </p>
+    <div class="hero-actions">
+      <a href="https://buy.stripe.com/aFacN7ah4gQF7dL4Sv8Zq0G?prefilled_promo_code=CLAUDE-250OFF" class="btn btn-primary" target="_blank" rel="noopener">Comprar plaza — <s style="opacity:.55;font-weight:500;margin-right:4px;">750€</s> 500€ <span class="arrow">→</span></a>
+      <a href="https://calendly.com/stefano-nch/workshop-aprende-claude-en-madrid" class="btn btn-ghost" target="_blank" rel="noopener">Reservar llamada</a>
+    </div>
+
+    <div class="meta-strip">
+      <div><span class="ml">Fecha</span><span class="mv">18 de noviembre, 10:00 a 16:00</span></div>
+      <div><span class="ml">Lugar en Madrid</span><span class="mv">C/ Hermanos Álvarez Quintero, 2</span></div>
+      <div><span class="ml">Plazas</span><span class="mv">20 como máximo</span></div>
+      <div><span class="ml">Para empresas</span><span class="mv">Bonificable por FUNDAE</span></div>
+    </div>
+  </div>
+
+  <div class="wrap hero-video">
+    <div class="video-frame" data-yt="tTwGh3L5XBs" data-title="Tráiler del taller de Claude">
+      <a class="video-thumb" href="https://youtu.be/tTwGh3L5XBs" target="_blank" rel="noopener" aria-label="Reproducir el tráiler del taller">
+        <img src="assets/trailer.jpg" alt="Tráiler del taller de Claude en Madrid" />
+        <span class="video-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></span>
+      </a>
+    </div>
+  </div>
+
+  <!-- color-block cards under hero, in the nocodehackers visual language -->
+  <div class="wrap">
+    <div class="hero-card-row">
+      <div class="hcard dark">
+        <div>
+          <span class="tag">Vibe Coding</span>
+          <h3>Construyes y despliegas<br/>una app real. En vivo.</h3>
+        </div>
+        <div class="term">
+          <div><span class="c-dim">~/claude</span> <span class="c-lime">$</span> build "app para mi equipo"</div>
+          <div class="c-dim">→ scaffolding…</div>
+          <div class="c-dim">→ adding auth…</div>
+          <div><span class="c-pink">✓ deployed</span> <span class="c-dim">at yourapp.ai</span><span class="caret"></span></div>
+        </div>
+      </div>
+      <div class="hcard lime">
+        <div>
+          <span class="tag">Claude Cowork</span>
+          <h3>Automatizas tus procesos.<br/>Los de verdad.</h3>
+        </div>
+        <div>
+          <div class="big-num">10<em>×</em></div>
+          <div class="cap">menos horas en tareas repetitivas con ficheros, Excel y PowerPoint.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PARA QUIÉN ──────────────────────────────── -->
+<section id="para-quien">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="pill orange">Para quién</span>
+      <h2>¿Este taller<br><em>es para ti?</em></h2>
+      <p class="sec-desc">Diseñado para profesionales que quieren resultados reales con IA, no otra charla sobre "el futuro del trabajo".</p>
+    </div>
+    <div class="for-who-grid">
+      <div class="wcard accent-lime">
+        <span class="n">01 / intermedio</span>
+        <h4>Usas Claude pero sin método.</h4>
+        <p>Sabes que tiene potencial, pero aún no lo integras de forma sistemática en tu día a día.</p>
+      </div>
+      <div class="wcard accent-dark">
+        <span class="n">02 / builder</span>
+        <h4>Quieres construir sin programar.</h4>
+        <p>Tienes ideas de productos o herramientas internas y no quieres depender de un dev para sacarlas adelante.</p>
+      </div>
+      <div class="wcard accent-pink">
+        <span class="n">03 / automatizador</span>
+        <h4>Necesitas liberar tu tiempo.</h4>
+        <p>Tareas repetitivas con documentos, reporting y herramientas internas que te comen horas cada semana.</p>
+      </div>
+      <div class="wcard">
+        <span class="n">04 / líder</span>
+        <h4>Quieres liderar la adopción de IA.</h4>
+        <p>Buscas ser la persona que impulsa el uso inteligente de Claude en tu equipo u organización.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PILARES ─────────────────────────────────── -->
+<section id="pilares">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="pill">Los dos pilares</span>
+      <h2>Lo que vas a <em>dominar.</em></h2>
+      <p class="sec-desc">Dos bloques complementarios. Uno para construir, otro para automatizar. Juntos, un stack completo de IA aplicada.</p>
+    </div>
+
+    <div class="pilares-grid">
+      <article class="pilar green">
+        <div class="pilar-deco"></div>
+        <span class="tag">Pilar I / Vibe Coding</span>
+        <h3><span style="white-space:nowrap">Construye y despliega</span><br>una app real.</h3>
+        <p>Usarás Claude Code como tu ingeniero personal para crear una aplicación desde cero, añadir autenticación y desplegarla en un servidor real. Sin tocar código.</p>
+        <ul>
+          <li>Arquitectura en lenguaje natural</li>
+          <li>Login + gestión de usuarios</li>
+          <li>Deploy en vivo durante el taller</li>
+        </ul>
+      </article>
+      <article class="pilar pink">
+        <div class="pilar-deco"></div>
+        <span class="tag">Pilar II / Claude Cowork</span>
+        <h3>Automatiza tu trabajo diario.</h3>
+        <p>Aprenderás a usar Claude Cowork para automatizar tareas con ficheros, documentos, Excel y PowerPoint. Construirás agentes conectados a tus herramientas.</p>
+        <ul>
+          <li>Flujos multi-paso sin código</li>
+          <li>Integración con Chrome y apps web</li>
+          <li>Casos reales: reporting, research, onboarding</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- TEMARIO ─────────────────────────────────── -->
+<section id="temario">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="pill navy">Temario</span>
+      <h2>6 módulos. <em>Un sistema completo.</em></h2>
+      <p class="sec-desc">De los fundamentos a tener tu app desplegada y tus procesos automatizados, todo en un día.</p>
+    </div>
+    <div class="syllabus-wrap">
+      <div class="mod">
+        <div class="mod-num">01</div>
+        <div>
+          <div class="mod-track" data-track="base">Base</div>
+          <div class="mod-title">Fundamentos de Claude</div>
+        </div>
+        <ul>
+          <li>Modelos y cuándo usar cada uno</li>
+          <li>Prompt engineering que funciona</li>
+          <li>Projects, memoria y contexto largo</li>
+        </ul>
+      </div>
+      <div class="mod is-lime">
+        <div class="mod-num">02</div>
+        <div>
+          <div class="mod-track" data-track="vibe">Vibe Coding</div>
+          <div class="mod-title">De idea a app en horas</div>
+        </div>
+        <ul>
+          <li>Qué es el Vibe Coding y cómo funciona</li>
+          <li>Claude Code: tu ingeniero personal</li>
+          <li>Arquitectura en lenguaje natural</li>
+        </ul>
+      </div>
+      <div class="mod is-lime">
+        <div class="mod-num">03</div>
+        <div>
+          <div class="mod-track" data-track="vibe">Vibe Coding</div>
+          <div class="mod-title">Auth, deploy y producción</div>
+        </div>
+        <ul>
+          <li>Login y gestión de usuarios</li>
+          <li>Despliegue en servidor real</li>
+          <li>Tu app funcionando en vivo</li>
+        </ul>
+      </div>
+      <div class="mod is-dark">
+        <div class="mod-num">04</div>
+        <div>
+          <div class="mod-track" data-track="cowork">Claude Cowork</div>
+          <div class="mod-title">Automatiza tu trabajo diario</div>
+        </div>
+        <ul>
+          <li>Qué es Cowork y cómo instalarlo</li>
+          <li>Automatización de ficheros y carpetas</li>
+          <li>Flujos con Excel, Word y PowerPoint</li>
+        </ul>
+      </div>
+      <div class="mod is-dark">
+        <div class="mod-num">05</div>
+        <div>
+          <div class="mod-track" data-track="cowork">Claude Cowork</div>
+          <div class="mod-title">Agentes conectados a tus tools</div>
+        </div>
+        <ul>
+          <li>Integración con Chrome y apps web</li>
+          <li>Flujos multi-paso sin código</li>
+          <li>Casos: reporting, research, onboarding</li>
+        </ul>
+      </div>
+      <div class="mod">
+        <div class="mod-num">06</div>
+        <div>
+          <div class="mod-track" data-track="cierre">Cierre</div>
+          <div class="mod-title">Tu sistema y plan de acción</div>
+        </div>
+        <ul>
+          <li>Stack personal Vibe + Cowork</li>
+          <li>Biblioteca de prompts y plantillas</li>
+          <li>Hoja de ruta para tu equipo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- INSTRUCTORES ────────────────────────────── -->
+<section id="instructores">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="pill">Instructores</span>
+      <h2>Aprende de quien <em>ya lo hace.</em></h2>
+      <p class="sec-desc">Dos referentes en IA aplicada y no-code en España. No gurús, no hype: constructores.</p>
+    </div>
+    <div class="instructors-grid">
+      <article class="icard">
+        <div class="iphoto"><img src="assets/alex.png" alt="Alex Vaughtton"/></div>
+        <div class="iinfo">
+          <span class="role">Cofundador de nocodehackers</span>
+          <div class="iname">Alex Vaughtton</div>
+          <p class="ibio">Especialista en IA aplicada y herramientas no-code. Ha formado a miles de profesionales en cómo integrar inteligencia artificial en sus flujos de trabajo sin necesidad de programar.</p>
+          <div class="itags">
+            <span class="itag">Claude</span>
+            <span class="itag">Vibe Coding</span>
+            <span class="itag">No-code</span>
+          </div>
+        </div>
+      </article>
+      <article class="icard">
+        <div class="iphoto"><img src="assets/luis.png" alt="Luis Alfonso"/></div>
+        <div class="iinfo">
+          <span class="role">Cofundador de nocodehackers</span>
+          <div class="iname">Luis Alfonso</div>
+          <p class="ibio">Experto en automatización y productividad con IA. Ayuda a equipos y empresas a diseñar sistemas de trabajo inteligentes que eliminan tareas repetitivas y multiplican el output.</p>
+          <div class="itags">
+            <span class="itag">Claude Cowork</span>
+            <span class="itag">Automatización</span>
+            <span class="itag">IA para equipos</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- VENUE · MODULOR ─────────────────────────── -->
+<section id="lugar">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="pill green">El espacio</span>
+      <h2>El taller, en las oficinas de <em>Modulor</em>.</h2>
+      <p class="sec-desc">Un estudio de diseño en pleno barrio de Salamanca. Techos ornamentados, parquet de espiga y luz natural. Un espacio pensado para crear, no otra sala de hotel con moqueta.</p>
+    </div>
+
+    <div class="venue-grid">
+      <div class="vimg feat"><img src="assets/venue-1.jpg" alt="Sala de reuniones en las oficinas de Modulor en Madrid" loading="lazy"/></div>
+      <div class="vimg"><img src="assets/venue-2.jpg" alt="Zona de coworking en Modulor" loading="lazy"/></div>
+      <div class="vimg"><img src="assets/venue-3.jpg" alt="Sala con vistas a la calle en Modulor" loading="lazy"/></div>
+    </div>
+    <div class="venue-grid" style="grid-template-columns: 1fr; grid-template-rows: auto; min-height: 0; margin-top: 0.875rem;">
+      <div class="vimg" style="aspect-ratio: 21/9;"><img src="assets/venue-4.jpg" alt="Espacio principal de Modulor con columnas industriales" loading="lazy"/></div>
+    </div>
+
+    <div class="venue-info">
+      <div class="vcard dark">
+        <span class="vlabel">Dirección</span>
+        <div class="vval">C/ Hermanos Álvarez Quintero, 2</div>
+        <a href="https://maps.google.com/?q=Calle+Hermanos+Álvarez+Quintero+2+Madrid" target="_blank" rel="noopener">Ver en Google Maps →</a>
+      </div>
+      <div class="vcard">
+        <span class="vlabel">Cómo llegar</span>
+        <div class="vval">Centro de Madrid, a 5 min de Sol y Ópera</div>
+        <span style="font-size:13px;color:var(--muted);">Metro Sol (L1, L2, L3) y Ópera (L2, L5)</span>
+      </div>
+      <div class="vcard lime">
+        <span class="vlabel">El día</span>
+        <div class="vval"><span style="white-space:nowrap">18 de noviembre de 2026</span><br><span style="white-space:nowrap">10:00–16:00</span></div>
+        <span style="font-size:13px;">Café, comida y materiales incluidos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PRICING ─────────────────────────────────── -->
+<section id="inscribirse">
+  <div class="wrap">
+    <div class="pricing-shell">
+      <div>
+        <span class="pill">Inscripción</span>
+        <h2 style="margin-top: 1.25rem;">Las 10 primeras plazas. <em>A mitad de precio.</em></h2>
+        <p class="sec-desc" style="margin-top:1.25rem;">Presencial en Madrid, 18 de noviembre. Las <strong style="color:var(--white);">10 primeras plazas pagan 500€</strong> con el código <strong style="color:var(--white);">CLAUDE-250OFF</strong>. Después, 750€. Bonificable por FUNDAE.</p>
+        <div style="margin-top: 2rem;">
+          <div class="price-big">
+            <span style="font-family:var(--serif);font-size:0.45em;text-decoration:line-through;opacity:0.45;padding-top:0.6em;line-height:1;margin-right:0.4rem;">750€</span>
+            500€
+          </div>
+          <!-- price evolution -->
+          <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.5rem;font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.7);letter-spacing:0.02em;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="width:8px;height:8px;background:var(--lime);border-radius:50%;box-shadow:0 0 0 3px rgba(200,242,77,0.18);"></span>
+              <span><b style="color:var(--white);">500€</b> para las plazas 1 a 10 con el código CLAUDE-250OFF</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;opacity:0.55;">
+              <span style="width:8px;height:8px;background:rgba(255,255,255,0.4);border-radius:50%;"></span>
+              <span><b style="color:var(--white);">750€</b> para las plazas 11 a 20, precio normal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="plan-card">
+        <div style="display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-bottom:2.5rem;padding:0.6rem 0.85rem;background:var(--lime);border-radius:var(--r-sm);font-family:var(--font);font-size:13px;font-weight:500;letter-spacing:0;text-align:center;width:fit-content;margin-left:auto;margin-right:auto;">
+          <span><b>Quedan <span id="eb-seats-count-2">6</span>/10</b> plazas a 500€</span>
+        </div>
+        <ul class="plan-features">
+          <li>Acceso completo al taller presencial de 1 día</li>
+          <li>Construyes y despliegas tu propia app en vivo</li>
+          <li>Automatizas procesos reales con Claude Cowork</li>
+          <li>Materiales, plantillas y biblioteca de prompts</li>
+          <li>Bonificable por FUNDAE para empresas</li>
+          <li>Comunidad privada de nocodehackers</li>
+        </ul>
+        <a href="https://buy.stripe.com/aFacN7ah4gQF7dL4Sv8Zq0G?prefilled_promo_code=CLAUDE-250OFF" class="plan-cta" target="_blank" rel="noopener">Comprar plaza descuento — 500€ <span class="arrow">→</span></a>
+        <div style="text-align:center;margin-top:0.6rem;font-family:var(--mono);font-size:12px;color:var(--muted);">Aplica el código <b style="color:var(--ink);">CLAUDE-250OFF</b> al pagar</div>
+        <a href="https://calendly.com/stefano-nch/workshop-aprende-claude-en-madrid" class="plan-cta plan-cta-secondary" target="_blank" rel="noopener">Reservar llamada <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ ─────────────────────────────────────── -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="pill purple">FAQ</span>
+      <h2>Preguntas <em>frecuentes.</em></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">¿Necesito conocimientos técnicos previos? <span class="chev">+</span></button>
+        <div class="faq-a"><p>No. El taller está diseñado para profesionales sin perfil técnico. Solo necesitas una cuenta de Claude y ganas de aprender. No se programa, no se usa código.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Es presencial u online? <span class="chev">+</span></button>
+        <div class="faq-a"><p>Es 100% presencial en Madrid el <strong>18 de noviembre de 2026</strong>, de <strong>10:00 a 16:00</strong>, en <strong>C/ Hermanos Álvarez Quintero, 2</strong>. La dinámica grupal y los ejercicios en tiempo real son parte esencial del aprendizaje.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Qué versión de Claude necesito? <span class="chev">+</span></button>
+        <div class="faq-a"><p>Trabajamos con Claude.ai y Claude Code. Se recomienda tener plan Pro o Max para algunas funcionalidades avanzadas, aunque no es imprescindible para seguir el curso.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Hay política de reembolso? <span class="chev">+</span></button>
+        <div class="faq-a"><p>Sí. Tienes 7 días desde la compra para solicitar un reembolso completo si no has asistido al evento. Una vez celebrado el taller no se realizan devoluciones.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Puedo facturar a mi empresa? <span class="chev">+</span></button>
+        <div class="faq-a"><p>Sí. Al completar la compra puedes indicar los datos de tu empresa para la factura. Para inscripciones de equipos con descuento, escríbenos a hola@nocodehackers.es</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Es bonificable por FUNDAE? <span class="chev">+</span></button>
+        <div class="faq-a"><p>Sí. El taller es bonificable a través de FUNDAE para empresas. Escríbenos a hola@nocodehackers.es y te ayudamos con la gestión y la documentación antes del taller.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA FINAL ───────────────────────────────── -->
+<section>
+  <div class="wrap">
+    <div class="cta-final">
+      <span class="pill">Quedan <span id="eb-seats-count-3">6</span>/10 plazas a 500€</span>
+      <h2><span style="white-space:nowrap">Un día que cambia</span><br><span style="white-space:nowrap">cómo trabajas</span><br>el resto del año.</h2>
+      <p>Las <strong>10 primeras plazas</strong> a <strong>500€</strong> en vez de 750€ con el código <strong>CLAUDE-250OFF</strong>. Después, precio normal.</p>
+      <div class="cta-final-actions">
+        <a href="https://buy.stripe.com/aFacN7ah4gQF7dL4Sv8Zq0G?prefilled_promo_code=CLAUDE-250OFF" class="btn btn-primary" target="_blank" rel="noopener">Comprar plaza — <s style="opacity:.55;font-weight:500;margin-right:4px;">750€</s> 500€ <span class="arrow">→</span></a>
+        <a href="https://calendly.com/stefano-nch/workshop-aprende-claude-en-madrid" class="btn btn-ghost" target="_blank" rel="noopener">Reservar llamada</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER ──────────────────────────────────── -->
+<footer>
+  <div class="wrap foot-inner">
+    <div class="foot-brand">
+      <img src="assets/logo.png" alt="NocodeHackers" />
+    </div>
+    <p style="display:flex;flex-wrap:wrap;gap:0.35rem 1.5rem;">© 2026 nocodehackers <a href="https://nocodehackers.es">nocodehackers.es</a> <a href="#">Aviso legal</a> <a href="mailto:hola@nocodehackers.es">hola@nocodehackers.es</a></p>
+  </div>
+</footer>
+
+<script>
+  // Plazas restantes a 500€ — cambia este número a mano cuando se vendan plazas
+  const DISCOUNT_SEATS_LEFT = 6;
+  ['eb-seats-count', 'eb-seats-count-2', 'eb-seats-count-3'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = DISCOUNT_SEATS_LEFT;
+  });
+
+document.querySelectorAll('.video-frame[data-yt]').forEach(frame => {
+  frame.querySelector('.video-thumb').addEventListener('click', e => {
+    e.preventDefault();
+    const f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + frame.dataset.yt + '?autoplay=1&rel=0';
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.referrerPolicy = 'strict-origin-when-cross-origin';
+    f.allowFullscreen = true;
+    f.title = frame.dataset.title;
+    frame.replaceChildren(f);
+  });
+});
+
+document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+<!-- rebuild trigger -->
+</body>
+</html>
