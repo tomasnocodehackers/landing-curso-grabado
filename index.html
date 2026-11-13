@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="is-top">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -916,6 +916,508 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
 .price-new { letter-spacing: -0.04em; }
 .price-off { align-self: flex-start; font-size: 12px; line-height: 1; letter-spacing: .03em; text-transform: uppercase; padding: 8px 12px; border-radius: 8px; background: var(--nch-black); color: var(--lime); margin-top: -6px; }
 
+
+/* ============================================================
+   V2 · Alineado con nocodehackers.es (botones, containers, hero)
+   ============================================================ */
+
+/* Containers como en nocodehackers.es: 40 px laterales (20 px en móvil), contenido máx. 1440 px */
+:root { --pad: 40px; --wrap: calc(1440px + 2 * var(--pad)); }
+@media (max-width: 809px) { :root { --pad: 20px; } }
+
+/* Botones píldora de nocodehackers.es */
+.btn {
+  border: 0; border-radius: 999px;
+  padding: 16px 24px; min-height: 51px;
+  background: #151515; color: var(--nch-white);
+  font-size: 16px; line-height: 1.2;
+  transition: background .2s ease, color .2s ease;
+}
+.btn:hover { background: #404040; color: var(--nch-white); }
+.btn:active { transform: none; }
+.btn--secondary { background: rgba(242,242,242,.92); color: var(--nch-black); }
+.btn--secondary:hover { background: var(--accent); color: var(--nch-black); }
+.btn--lime { background: var(--accent); color: var(--nch-black); }
+.btn--lime:hover { background: var(--accent); color: var(--nch-black); opacity: .88; }
+/* Icono en círculo a la izquierda, como "Agenda una llamada" */
+.btn:has(> svg) { padding: 8px 24px 8px 8px; gap: 10px; }
+.btn > svg { order: -1; width: 32px; height: 32px; padding: 8px; border-radius: 999px; background: rgba(255,255,255,.1); }
+.btn--secondary > svg, .btn--lime > svg { background: rgba(0,0,0,.07); }
+.btn:hover svg { transform: none; }
+.nav .btn { min-height: 0; padding: 12px 20px; font-size: 14px; }
+.cta-final .btn--secondary { background: rgba(255,255,255,.12); color: var(--nch-white); border: 0; }
+.cta-final .btn--secondary:hover { background: var(--accent); color: var(--nch-black); }
+@media (max-width: 380px) { .btn { padding: 16px 20px; } .btn:has(> svg) { padding: 8px 20px 8px 8px; } }
+
+/* Hero centrado (layout de referencia: Flux Academy), fondo blanco:
+   Alex grande arriba con creatividades alrededor, nombre del curso enorme montado sobre la foto */
+.hero--flux { background: var(--bg-1); padding: clamp(16px, 2vw, 24px) 0 clamp(48px, 6vw, 80px); overflow: hidden; }
+.hero-flux { display: flex; flex-direction: column; align-items: center; }
+.hero-visual { position: relative; width: 100%; height: clamp(340px, 31vw, 440px); }
+.hero-alex { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); height: 100%; width: auto; max-width: none; z-index: 1;
+  -webkit-mask-image: linear-gradient(#000 62%, transparent 92%), linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%);
+  mask-image: linear-gradient(#000 62%, transparent 92%), linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%);
+  -webkit-mask-composite: source-in; mask-composite: intersect; }
+.hero-visual .fc--vercel { left: 20%; top: 4%; }
+.hero-visual .fc--pay    { left: 6%;  top: 18%; }
+.hero-visual .fc--term   { left: 1%;  top: 44%; }
+.hero-visual .fc--skill  { left: 17%; top: 58%; }
+.hero-visual .fc--mail   { right: 7%; top: 10%; }
+.hero-visual .fc--flow   { right: 1%; top: 36%; }
+.hero-visual .fc--supa   { right: 20%; top: 58%; }
+
+.hero-copy2 { position: relative; z-index: 3; margin-top: clamp(-72px, -4.5vw, -32px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+.hero--flux .course-id--c { margin-bottom: 4px; }
+.hero--flux h1 { font-size: clamp(2.375rem, 5.2vw, 4.75rem); line-height: 1; letter-spacing: -0.04em; max-width: 14em; }
+.hero--flux .lead { max-width: 60ch; color: var(--nch-black-soft); }
+.hero--flux .hero-actions { justify-content: center; gap: 10px; }
+.hero--flux .proof { justify-content: center; margin-top: 2px; }
+.hero--flux .avatars img { border-color: var(--bg-1); }
+
+/* Notificaciones más pequeñas: aparecen todas a la vez creciendo y luego flotan */
+.hero-visual .fc { padding: 9px 12px; gap: 9px; border-radius: 12px; font-size: 12px;
+  opacity: 0; animation: fcin .6s cubic-bezier(.34,1.4,.64,1) .2s both, fcfloat 6s ease-in-out calc(.8s + var(--d, 0s)) infinite; }
+.hero-visual .fc b { font-size: 13px; }
+.hero-visual .fc small { font-size: 11px; margin-top: 3px; }
+.hero-visual .fc-ico { width: 28px; height: 28px; border-radius: 8px; }
+.hero-visual .fc-ico svg, .hero-visual .fc-ico .claude-mark { width: 16px; height: 16px; }
+.hero-visual .fc-amt { font-size: 13px; }
+.hero-visual .fc--term { padding: 11px 14px; gap: 6px; }
+.hero-visual .fc--term code { font-size: 11px; }
+.hero-visual .fc--flow { padding: 11px 14px; gap: 8px; }
+.hero-visual .flow span { font-size: 11px; padding: 5px 8px; }
+.hero-visual .fc--tag { padding: 7px 12px 7px 10px; font-size: 12px; border-radius: 10px; }
+.hero-visual .fc--tag svg { width: 14px; height: 14px; }
+@keyframes fcin {
+  from { opacity: 0; transform: scale(.6) rotate(var(--r, 0deg)); }
+  to   { opacity: 1; transform: scale(1) rotate(var(--r, 0deg)); }
+}
+@media (prefers-reduced-motion: reduce) { .hero-visual .fc { animation: none; opacity: 1; } }
+
+@media (max-width: 1100px) {
+  .hero-visual .fc--term, .hero-visual .fc--flow { display: none; }
+}
+@media (max-width: 900px) {
+  .hero-visual { height: clamp(300px, 70vw, 420px); }
+  .hero-visual .fc--tag { display: none; }
+  .hero-visual .fc--pay  { left: 0; top: 8%; }
+  .hero-visual .fc--mail { right: 0; top: 34%; }
+  .hero-visual .fc--skill { display: flex; left: 0; top: 56%; }
+}
+@media (max-width: 640px) {
+  .hero-copy2 { margin-top: -36px; gap: 18px; }
+  .hero-actions { width: 100%; }
+  .hero-actions .btn { flex: 1 1 100%; }
+}
+
+/* ============================================================
+   Lima reservado SOLO para CTA / urgencia (banner Black Friday,
+   .btn--lime, hover del botón secundario, etiqueta de descuento).
+   Todo lo demás pasa a neutros del sistema.
+   ============================================================ */
+.sec-lime, .tag--lime, .mock, .bridge { background: var(--bg-2); }
+.fit, .fit2, .syl-aside, .out-grid .out:nth-child(1), .tool-chips .tag:nth-child(4n+1),
+.plan--main, #precio .plans .plan--main, #precio .plan--one { background: var(--bg-2); }
+.fit2 .icon-tile, .fit .icon-tile, .syl-aside .tag { background: #fff; }
+.feat-ico--lime, .tm-av--lime { background: var(--bg-2); }
+.badge, .course-id--c .badge { background: var(--nch-black); }
+.badge img { filter: invert(1); }
+.player .cap .bar i { background: #fff; }
+.cw-bar i { background: var(--nch-black); }
+.cc--chk { background: #fff; }
+.cc--pr code, .fc--term i, .fc--term .ok { color: #fff; }
+.fc--term i { opacity: .55; }
+.fc--mail { background: #fff; }
+.fc--mail .fc-ico--resend { background: #000; }
+.fc--mail small { color: var(--nch-black-soft); }
+.spark--2 { fill: var(--purple); }
+.reto[open] .pill { background: var(--nch-black); border-color: var(--nch-black); color: #fff; }
+.vid-play { background: #fff; }
+.cm-msg--me .cm-bub { background: var(--nch-black); }
+.cm-msg--me .cm-bub p { color: #fff; }
+.cm-msg--me .cm-bub b { color: rgba(255,255,255,.6); }
+.seal circle[stroke="var(--lime)"] { stroke: #fff; }
+.seal text[fill="var(--lime)"], .seal g[fill="var(--lime)"] { fill: #fff; }
+
+/* Notificaciones pegadas a Alex: se colocan desde el centro de la foto */
+.hero-visual .fc { left: auto; right: auto; }
+.hero-visual .fc--vercel { right: calc(50% + 235px); top: 3%; }
+.hero-visual .fc--pay    { right: calc(50% + 190px); top: 17%; }
+.hero-visual .fc--term   { right: calc(50% + 215px); top: 40%; }
+.hero-visual .fc--skill  { right: calc(50% + 175px); top: 62%; }
+.hero-visual .fc--mail   { left: calc(50% + 185px);  top: 9%; }
+.hero-visual .fc--flow   { left: calc(50% + 205px);  top: 33%; }
+.hero-visual .fc--supa   { left: calc(50% + 195px);  top: 60%; }
+@media (max-width: 900px) {
+  .hero-visual .fc--pay   { right: auto; left: max(0px, calc(50% - 175px)); top: 6%; }
+  .hero-visual .fc--mail  { left: auto; right: max(0px, calc(50% - 175px)); top: 52%; }
+  .hero-visual .fc--skill { right: auto; left: max(0px, calc(50% - 175px)); top: 62%; }
+}
+
+/* ============================================================
+   Hero oscuro al entrar → blanco al hacer scroll
+   (.is-top en <html>; lo quita el script en cuanto hay scroll)
+   ============================================================ */
+.nav, .hero--flux, .nav-links a, .nav-logo img, .hero--flux .lead,
+.hero--flux .course-id--c .badge, .hero--flux .course-id--c .badge img, .hero--flux .course-id-txt small,
+.hero--flux .proof-lead, .hero--flux .proof-score, .hero--flux .proof-label, .hero--flux .proof-src,
+.hero--flux .avatars img, .hero--flux .stars-bg {
+  transition: background-color .6s ease, color .6s ease, border-color .6s ease, fill .6s ease, filter .6s ease;
+}
+.hero-visual::before { content: ""; position: absolute; left: 50%; top: 4%; width: min(720px, 90%); aspect-ratio: 1; transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(255,255,255,.16), rgba(255,255,255,0)); opacity: 0; transition: opacity .6s ease; pointer-events: none; z-index: 0; }
+
+.is-top .nav { background: rgba(0,0,0,.92); border-bottom-color: rgba(255,255,255,.08); }
+.is-top .nav-logo img { filter: invert(1); }
+.is-top .nav-links a { color: rgba(255,255,255,.7); }
+.is-top .nav-links a:hover { color: #fff; }
+.is-top .nav .btn, .is-top .hero--flux .btn { background: #fff; color: var(--nch-black); }
+.is-top .nav .btn:hover, .is-top .hero--flux .btn:hover { background: #E6E6E6; color: var(--nch-black); }
+.is-top .hero--flux .btn > svg { background: rgba(0,0,0,.07); }
+.is-top .hero--flux .btn--secondary { background: rgba(255,255,255,.12); color: #fff; }
+.is-top .hero--flux .btn--secondary > svg { background: rgba(255,255,255,.12); }
+.is-top .hero--flux .btn--secondary:hover { background: var(--accent); color: var(--nch-black); }
+.is-top .hero--flux .btn--secondary:hover > svg { background: rgba(0,0,0,.07); }
+
+.is-top .hero--flux { background: var(--nch-black); color: #fff; }
+.is-top .hero--flux .lead { color: rgba(255,255,255,.7); }
+.is-top .hero--flux .course-id--c .badge { background: #fff; }
+.is-top .hero--flux .course-id--c .badge img { filter: none; }
+.is-top .hero--flux .course-id-txt small { color: rgba(255,255,255,.6); }
+.is-top .hero--flux .proof-lead, .is-top .hero--flux .proof-score { color: #fff; }
+.is-top .hero--flux .proof-label, .is-top .hero--flux .proof-src { color: rgba(255,255,255,.65); }
+.is-top .hero--flux .avatars img { border-color: var(--nch-black); }
+.is-top .hero--flux .stars-bg { fill: rgba(255,255,255,.25); }
+.is-top .hero-visual::before { opacity: 1; }
+.is-top .hero-visual .fc--term { box-shadow: 0 0 0 1px rgba(255,255,255,.16), 0 10px 28px rgba(0,0,0,.4); }
+@media (prefers-reduced-motion: reduce) {
+  .nav, .hero--flux, .hero--flux *, .hero-visual::before { transition: none !important; }
+}
+
+/* Botones del hero SIEMPRE dentro del primer pantallazo:
+   el bloque foto + copy se limita a la altura visible y la foto es lo que encoge */
+.hero-fold { width: 100%; display: flex; flex-direction: column; align-items: center;
+  max-height: calc(100svh - var(--hdr, 124px) - clamp(16px, 2vw, 24px) - 16px); }
+.hero-fold .hero-visual { flex: 0 1 auto; min-height: 150px; }
+.hero-fold .hero-copy2 { flex: 0 0 auto; }
+.hero--flux h1 { font-size: clamp(2rem, min(5.2vw, 7.6svh), 4.75rem); }
+.hero--flux .proof { margin-top: 22px; }
+@media (max-height: 780px) and (min-width: 901px) {
+  .hero-visual .fc--term, .hero-visual .fc--flow, .hero-visual .fc--vercel, .hero-visual .fc--supa { display: none; }
+  .hero-copy2 { gap: 16px; }
+  .hero--flux .lead { font-size: 16px; }
+}
+@media (max-height: 640px) {
+  .hero-fold .hero-copy2 { margin-top: -24px; }
+  .hero--flux .course-id--c .badge { width: 36px; height: 36px; }
+}
+
+/* ============================================================
+   Color como en nocodehackers.es: blanco + gris #F2F2F2, texto negro,
+   lima solo CTA, color de paleta solo en etiquetas pequeñas.
+   Azul fuera (salvo el azul clarito puntual de fondo).
+   ============================================================ */
+.block--web { background: var(--sky); color: var(--nch-black); }
+.block--web h3 { color: var(--nch-black); }
+.block--web p, .block--web li { color: #2a2a2a; }
+.block--web .tag { background: #fff; color: var(--nch-black); }
+.block--auto { background: var(--bg-2); }
+.block--auto .tag { background: #fff; color: var(--nch-black); }
+.stat:nth-child(n) b, .reto .num, details.reto:nth-of-type(n+7) .num, .fit-close2 b { color: var(--nch-black); }
+.app-list .now, .bar i, .cw-top, .cw-side .now { background: var(--nch-black); color: #fff; }
+.how-row:nth-child(n) .i { background: var(--bg-2); }
+.tool-chips .tag:nth-child(n) { background: var(--bg-2); }
+.out-grid .out:nth-child(n) { background: var(--bg-2); }
+.plans .plan:nth-child(n), #precio .plans .plan--main, #precio .plan--one { background: var(--bg-2); }
+.feat-ico--lime, .feat-ico--pink, .feat-ico--mint, .feat-ico--sky,
+.tm-av--pink, .tm-av--lime, .tm-av--mint, .tm-av--sky { background: var(--bg-2); }
+.ins-photo { background: var(--bg-2); }
+.syl-tab--blue[aria-selected="true"], .syl-tab--purple[aria-selected="true"] { background: var(--nch-black); border-color: var(--nch-black); color: #fff; }
+.cm-bub b { color: var(--nch-black-soft); }
+.cert-list svg { stroke: var(--nch-black); }
+.fc--flow { background: #fff; color: var(--nch-black); }
+.fc--flow small { color: var(--nch-black-soft); }
+.flow span { background: var(--bg-2); }
+
+/* "Este curso es para ti si…": icono arriba a la izquierda, más pequeño, texto debajo */
+.fit-grid2 .fit2 { flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 14px; padding: 24px; min-height: 0; }
+.fit-grid2 .fit2 .emo { font-size: 24px; width: auto; text-align: left; line-height: 1; }
+.fit-grid2 .fit2 p { font-size: 16px; line-height: 1.3; }
+@media (max-width: 640px) {
+  .fit-grid2 .fit2 { padding: 18px; gap: 10px; }
+  .fit-grid2 .fit2 .emo { font-size: 22px; }
+  .fit-grid2 .fit2 p { font-size: 14px; }
+}
+@media (max-width: 900px) { .fit-grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } }
+@media (max-width: 560px) { .fit-grid2 { grid-template-columns: minmax(0, 1fr); gap: 10px; } .fit-grid2 .fit2 p { hyphens: manual; } }
+/* Icono de "Es para ti si…" dentro de un círculo blanco (la tarjeta es gris) */
+.fit-grid2 .fit2 .emo { width: 44px; height: 44px; border-radius: 999px; background: #fff; display: grid; place-items: center; font-size: 20px; flex-shrink: 0; }
+@media (max-width: 640px) { .fit-grid2 .fit2 .emo { width: 40px; height: 40px; font-size: 18px; } }
+/* Iconos siempre inscritos en un círculo blanco sobre tarjetas grises */
+.feat-ico, .feat-ico--lime, .feat-ico--pink, .feat-ico--mint, .feat-ico--sky {
+  width: 44px; height: 44px; border-radius: 999px; background: #fff; margin-bottom: 6px; }
+.feat-ico svg { width: 20px; height: 20px; }
+.icon-tile, .fit .icon-tile, .bridge .icon-tile, .out .icon-tile, .fit2 .icon-tile {
+  width: 44px; height: 44px; border-radius: 999px; background: #fff; }
+.icon-tile svg { width: 20px; height: 20px; }
+/* Maqueta de la plataforma: las tarjetas aparecen a la vez, creciendo, al entrar en pantalla */
+@media (min-width: 1001px) {
+  .collage.anim-ready .cc, .collage.anim-ready .spark { opacity: 0; animation: none; }
+  .collage.anim-ready.is-in .cc { animation: fcin .6s cubic-bezier(.34,1.4,.64,1) .15s both, fcfloat 7s ease-in-out calc(.75s + var(--d, 0s)) infinite; }
+  .collage.anim-ready.is-in .spark { animation: sparkin .6s cubic-bezier(.34,1.4,.64,1) .35s both; }
+}
+@keyframes sparkin { from { opacity: 0; transform: scale(.3) rotate(-30deg); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .collage.anim-ready .cc, .collage.anim-ready .spark { opacity: 1 !important; animation: none !important; }
+}
+/* Etiquetas de sección como en nocodehackers.es: relleno sólido de paleta, texto negro, sin borde */
+.tag--sec { font-size: 12px; line-height: 1; padding: 8px 16px; border-radius: 8px; border: 0; color: var(--nch-black); }
+.tag--sec.tag--orange { background: var(--orange); }
+.tag--sec.tag--purple { background: var(--purple); }
+.tag--sec.tag--pink40 { background: rgba(242,189,238,.4); }
+
+/* ============================================================
+   Bloques como en nocodehackers.es: card gris a todo el ancho,
+   etiqueta de color + título a la izquierda, descripción y lista a la derecha
+   ============================================================ */
+.blocks { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.block, .block--web, .block--auto { background: var(--bg-2); color: var(--nch-black);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 48px; align-items: start;
+  padding: clamp(28px, 4vw, 52px); border-radius: var(--r-card); }
+.block-l { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.block-r { display: flex; flex-direction: column; gap: 22px; padding-top: 4px; }
+.block h3, .block--web h3 { color: var(--nch-black); font-size: clamp(1.75rem, 3vw, 2.5rem); letter-spacing: -0.02em; max-width: 16ch; }
+.block p, .block--web p, .block--auto p { color: var(--nch-black-soft); max-width: 48ch; }
+.block li, .block--web li, .block--auto li { color: var(--nch-black-soft); font-size: 16px; }
+.block ul { gap: 12px; }
+.tag--block { font-size: 14px; line-height: 1; padding: 10px 16px; border-radius: 8px; border: 0; color: var(--nch-black); align-self: flex-start; }
+.tag--block.tag--pink { background: var(--pink); }
+.tag--block.tag--purple { background: var(--purple); }
+@media (max-width: 820px) { .block, .block--web, .block--auto { grid-template-columns: minmax(0, 1fr); } }
+
+/* ============================================================
+   Fondo de página siempre blanco: las secciones "alternas" pasan
+   a ser una card gris grande dentro del contenedor
+   ============================================================ */
+.sec-alt { background: var(--bg-1); padding: 0; }
+.sec-alt > .wrap { background: var(--bg-2); border-radius: 32px;
+  width: calc(100% - 2 * var(--pad)); max-width: calc(var(--wrap) - 2 * var(--pad));
+  padding: var(--section) clamp(20px, 5vw, 72px); }
+@media (max-width: 640px) { .sec-alt > .wrap { border-radius: 24px; } }
+
+/* Temario: módulos en forma de píldora (como el menú de nocodehackers.es) */
+.reto, .reto[open] { border-radius: 40px; box-shadow: none; background: #fff; }
+.reto summary { padding: 20px 24px 20px 30px; }
+.reto-body { padding: 4px 30px 28px 66px; }
+.syl-tab { border-radius: 999px; padding: 14px 26px; }
+@media (max-width: 640px) {
+  .reto, .reto[open] { border-radius: 32px; }
+  .reto summary { padding: 16px 16px 16px 22px; }
+  .reto-body { padding: 4px 22px 24px 22px; }
+  .syl-tab { padding: 12px 20px; }
+}
+
+/* Temario: en escritorio la columna del vídeo se queda fija mientras bajas por los módulos */
+@media (min-width: 901px) {
+  .syllabus { align-items: start; }
+  .syllabus > .syl-video { position: sticky; top: calc(var(--hdr, 128px) + 24px); align-self: start; }
+}
+
+/* Cards blancas con borde fino (alternan con las grises) */
+.feat { background: #fff; border: 1px solid #EBEBEB; }
+.feat .feat-ico, .feat .feat-ico--lime, .feat .feat-ico--pink, .feat .feat-ico--mint, .feat .feat-ico--sky { background: var(--bg-2); }
+
+/* Logos del instructor: cada uno en una card gris redondeada */
+.ins-brands { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 10px; }
+.ins-brands li { background: var(--bg-2); border-radius: 20px; height: 76px; display: flex; align-items: center; justify-content: center; padding: 0 18px; }
+.ins-brands img { max-height: 34px; max-width: 100%; object-fit: contain; }
+@media (max-width: 640px) { .ins-brands { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ins-brands li { height: 68px; } }
+
+/* Logos del instructor: fila de cards a todo el ancho de la columna */
+.ins-copy .ins-brands { align-self: stretch; width: 100%; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 1100px) { .ins-copy .ins-brands { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 640px)  { .ins-copy .ins-brands { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Alineación: las cabeceras a la izquierda acaban en el borde de la primera columna de cards */
+@media (min-width: 901px) {
+  .sec-head:not(.sec-head--c) { max-width: calc(50% - 8px); }
+  .sec-head:not(.sec-head--c) .lead { max-width: none; }
+}
+
+/* Card del precio en lima: es el bloque de conversión */
+#precio .plan--one, #precio .plans .plan--main { background: var(--lime); }
+#precio .plan--one p, #precio .plan--one li { color: var(--nch-black); }
+
+/* Quiénes somos: misma jerarquía que el resto (H2 48 · entradilla 18 · texto 16), sin píldoras */
+.about-copy h2 { font-size: clamp(2rem, 4.6vw, 3rem); letter-spacing: -0.021em; line-height: 1.1; max-width: 18ch; }
+.about-lead { font-size: clamp(1.0625rem, 1.6vw, 1.125rem); line-height: 1.35; letter-spacing: 0; color: var(--nch-black); max-width: 56ch; }
+.about-p { font-size: 16px; line-height: 1.45; color: var(--nch-black-soft); max-width: 60ch; }
+.about-p mark { background: none; color: var(--nch-black); padding: 0; border-radius: 0; white-space: normal; }
+/* Logo inscrito en un cuadrado negro redondeado, como la insignia del hero */
+.about-mark { width: 44px; height: 44px; padding: 11px; border-radius: 12px; background: var(--nch-black); color: #fff; flex-shrink: 0; }
+.about-who { font-size: 14px; }
+
+/* Jerarquía homogénea: todos los titulares de sección a 48 px y entradillas a 18 px
+   (excepto "AI Product Builder" de Presentamos y el CTA final, que son titulares de impacto) */
+#instructor h2, #precio h2, #garantia h2, #faq h2 {
+  font-size: clamp(2rem, 4.6vw, 3rem); letter-spacing: -0.021em; line-height: 1.1; }
+.guar-lead { font-size: clamp(1.0625rem, 1.6vw, 1.125rem); line-height: 1.35; }
+
+#faq .sec-head h2 { font-size: clamp(2rem, 4.6vw, 3rem); letter-spacing: -0.021em; line-height: 1.1; }
+/* Precio: botón a todo el ancho de la card, debajo de las dos columnas */
+.plan--one .plan-cta { grid-column: 1 / -1; margin-top: 4px; }
+
+/* FAQ como en nocodehackers.es: titular grande en una línea, filas amplias,
+   preguntas cerradas en gris claro, círculo +/− a la derecha */
+#faq .sec-head { max-width: none; }
+#faq .sec-head h2 { font-size: clamp(2.5rem, 6vw, 5.25rem); letter-spacing: -0.04em; line-height: 1; max-width: none; }
+#faq .faq { margin-top: clamp(24px, 4vw, 56px); }
+#faq .faq summary { padding: clamp(28px, 3.6vw, 52px) 0 clamp(28px, 3.6vw, 52px) 12px; color: #C2C2C2; }
+#faq .faq summary:hover, #faq .faq details[open] summary { color: var(--nch-black); }
+#faq .fx { width: 52px; height: 52px; }
+#faq .fx::before, #faq .fx::after { width: 20px; }
+#faq .faq .a { padding: 0 64px clamp(28px, 3.6vw, 48px) 12px; font-size: 16px; line-height: 1.45; max-width: 60ch; }
+@media (max-width: 640px) {
+  #faq .fx { width: 40px; height: 40px; }
+  #faq .fx::before, #faq .fx::after { width: 16px; }
+  #faq .faq summary { padding-left: 0; }
+  #faq .faq .a { padding: 0 0 28px 0; }
+}
+
+/* Garantía: efecto sello estampado al entrar en pantalla */
+.guar-seal.stamp-ready .seal { opacity: 0; }
+.guar-seal.stamp-ready.is-in .seal { animation: stamp .7s cubic-bezier(.2,.9,.25,1) .1s both; }
+.guar-seal.stamp-ready.is-in { animation: stamp-jolt .35s ease-out .45s both; }
+@keyframes stamp {
+  0%   { opacity: 0; transform: scale(1.9) rotate(-22deg); filter: drop-shadow(0 60px 50px rgba(0,0,0,.18)); }
+  55%  { opacity: 1; transform: scale(.9) rotate(-5deg);  filter: drop-shadow(0 4px 6px rgba(0,0,0,.25)); }
+  72%  { transform: scale(1.04) rotate(-7deg); }
+  100% { opacity: 1; transform: scale(1) rotate(-6deg);   filter: drop-shadow(0 18px 30px rgba(0,0,0,.18)); }
+}
+@keyframes stamp-jolt { 0%, 100% { transform: none; } 30% { transform: translateY(3px); } 60% { transform: translateY(-1px); } }
+@media (prefers-reduced-motion: reduce) {
+  .guar-seal.stamp-ready .seal { opacity: 1; animation: none !important; transform: rotate(-6deg); }
+  .guar-seal.stamp-ready.is-in { animation: none; }
+}
+
+/* Bloques: de nuevo uno al lado del otro; dentro, contenido apilado */
+.blocks { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.block, .block--web, .block--auto { grid-template-columns: minmax(0, 1fr); gap: 24px; align-content: start; }
+.block-l { gap: 18px; }
+.block-r { padding-top: 0; }
+.block h3, .block--web h3 { font-size: clamp(1.75rem, 2.6vw, 2.25rem); max-width: 18ch; }
+@media (max-width: 820px) { .blocks { grid-template-columns: minmax(0, 1fr); } }
+
+/* Presentamos: "AI Product Builder" se escribe al entrar en pantalla; después aparece el resto */
+.tw-ch { opacity: 0; }
+.tw-ch.on { opacity: 1; }
+.tw-ch.cur { position: relative; }
+.tw-ch.cur::after { content: ""; position: absolute; right: -0.06em; top: .08em; bottom: .02em; width: .06em; background: currentColor; animation: tw-blink .8s steps(1) infinite; }
+.tw-start::before { content: ""; display: inline-block; width: .06em; height: .9em; margin-right: -.06em; vertical-align: -.05em; background: currentColor; animation: tw-blink .8s steps(1) infinite; }
+@keyframes tw-blink { 50% { opacity: 0; } }
+.intro .intro-head .lead, .intro .collage, .intro + .feat-wrap, .intro .feat-wrap { transition: opacity .6s ease, transform .6s ease; }
+.intro.tw-wait .intro-head .lead, .intro.tw-wait .collage, .intro.tw-wait .feat-wrap { opacity: 0; transform: translateY(16px); }
+.intro.tw-wait .collage.anim-ready .cc, .intro.tw-wait .collage.anim-ready .spark { animation: none !important; opacity: 0; }
+
+/* Temario: pastillas sticky (siguen el scroll) y los dos bloques seguidos */
+.syl-tabs { position: sticky; top: var(--hdr, 128px); z-index: 5; background: var(--bg-2); padding: 24px 0 12px; margin: -24px 0 4px; }
+@media (max-width: 900px) { .syl-tabs { padding-top: 12px; margin-top: -12px; } }
+
+/* Hero: entrada en secuencia → pastilla del curso, bloque de texto, Alex (crece sutil), notificaciones */
+@keyframes heroUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes heroAlex { from { opacity: 0; transform: translateX(-50%) scale(.95); } to { opacity: 1; transform: translateX(-50%) scale(1); } }
+@keyframes heroFade { from { opacity: 0; } }
+.hero--flux .course-id--c { animation: heroUp .55s cubic-bezier(.2,.8,.2,1) .35s both; }
+.hero--flux h1, .hero--flux .hero-copy2 .lead, .hero--flux .hero-actions, .hero--flux .proof { animation: heroUp .55s cubic-bezier(.2,.8,.2,1) .35s both; }
+.hero--flux .hero-alex { transform-origin: 50% 100%; animation: heroAlex .8s cubic-bezier(.2,.8,.2,1) .05s both; }
+.hero--flux .hero-visual::before { animation: heroFade .8s ease .05s both; }
+.hero-visual .fc { animation: fcin .55s cubic-bezier(.34,1.4,.64,1) .85s both, fcfloat 6s ease-in-out calc(1.4s + var(--d, 0s)) infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .hero--flux .course-id--c, .hero--flux h1, .hero--flux .hero-copy2 .lead, .hero--flux .hero-actions,
+  .hero--flux .proof, .hero--flux .hero-alex, .hero--flux .hero-visual::before { animation: none; }
+  .hero-visual .fc { animation: none; opacity: 1; }
+}
+
+/* Temario: la pestaña activa en rosa */
+.syl-tabs .syl-tab[aria-selected="true"] { background: var(--pink); border-color: var(--pink); color: var(--nch-black); }
+.syl-tabs .syl-tab[aria-selected="true"] small { color: var(--nch-black); opacity: .7; }
+
+/* Hero en móvil: notificaciones mucho más pequeñas y pegadas a los bordes */
+@media (max-width: 640px) {
+  .hero-visual .fc { padding: 6px 9px; gap: 7px; border-radius: 9px; font-size: 10px;
+    box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 6px 16px rgba(0,0,0,.14); }
+  .hero-visual .fc b { font-size: 11px; }
+  .hero-visual .fc small { font-size: 9.5px; margin-top: 1px; }
+  .hero-visual .fc-ico { width: 20px; height: 20px; border-radius: 6px; }
+  .hero-visual .fc-ico svg, .hero-visual .fc-ico .claude-mark { width: 12px; height: 12px; }
+  .hero-visual .fc--pay   { left: 0; right: auto; top: 10%; }
+  .hero-visual .fc--mail  { right: 0; left: auto; top: 42%; }
+  .hero-visual .fc--skill { left: 0; right: auto; top: 64%; }
+}
+
+
+/* Instructor: sección más alta, más aire antes de los logos, foto y logos alineados abajo */
+#instructor { padding: clamp(80px, 10vw, 152px) 0; }
+#instructor .ins-grid { align-items: end; }
+#instructor .ins-copy .ins-brands-h { margin-top: 40px; }
+#instructor .ins-photo { aspect-ratio: 4 / 5; }
+@media (max-width: 900px) { #instructor .ins-photo { aspect-ratio: 1 / 1; } }
+
+/* Banner Black Friday en móvil: una sola línea → "BF · 50% OFF" + contador, de lado a lado */
+@media (max-width: 640px) {
+  .promo-in { flex-wrap: nowrap; justify-content: space-between; gap: 10px; padding-top: 8px; padding-bottom: 8px; }
+  .promo-txt, .promo-alarm { display: none; }
+  .promo-off { padding: 7px 11px; font-size: 12px; }
+  .promo-off::before { content: "BF · "; }
+  .promo-count { gap: 8px; padding: 7px 11px; font-size: 11px; }
+  .promo-count b { font-size: 13px; }
+}
+@media (max-width: 359px) { .promo-count { gap: 5px; padding: 7px 8px; font-size: 10px; } .promo-count b { font-size: 12px; } }
+
+/* Presentamos: escritura sin cursor */
+.tw-ch.cur::after, .tw-start::before { content: none; display: none; }
+
+/* "Es para ti si…": título corto + frase de apoyo, sin cortes de palabra, aparición escalonada */
+.fit-grid2 .fit2 .fit-t { font-size: 18px; line-height: 1.2; letter-spacing: -0.01em; font-weight: 400; color: var(--nch-black); max-width: none; }
+.fit-grid2 .fit2 p { font-size: 15px; line-height: 1.4; color: var(--nch-black-soft); hyphens: none; -webkit-hyphens: none; overflow-wrap: normal; }
+.fit-grid2 .fit2 { gap: 10px; }
+.fit-grid2 .fit2 .emo { margin-bottom: 6px; }
+.fit-grid2.anim-ready .fit2 { opacity: 0; transform: translateY(16px); }
+.fit-grid2.anim-ready.is-in .fit2 { animation: heroUp .55s cubic-bezier(.2,.8,.2,1) calc(var(--i, 0) * 70ms) both; }
+@media (prefers-reduced-motion: reduce) { .fit-grid2.anim-ready .fit2 { opacity: 1; transform: none; animation: none !important; } }
+@media (max-width: 640px) { .fit-grid2 .fit2 .fit-t { font-size: 17px; } .fit-grid2 .fit2 p { font-size: 14px; } }
+
+/* Cards "Es para ti si…": título y frase más juntos, más aire entre el icono y el texto */
+.fit-grid2 .fit2 { gap: 4px; }
+.fit-grid2 .fit2 .emo { margin-bottom: 20px; }
+
+/* "Qué te llevas" en escritorio: titular sticky a la izquierda, cards apiladas a la derecha */
+@media (min-width: 901px) {
+  #resultados > .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px clamp(32px, 5vw, 80px); align-items: start; }
+  #resultados .sec-head { position: sticky; top: calc(var(--hdr, 128px) + 40px); max-width: none; margin-bottom: 0; }
+  #resultados .sec-head h2 { max-width: 14ch; }
+  #resultados .sec-head .lead { max-width: 40ch; }
+  #resultados .out-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+}
+
+/* Criterio único en cards con icono + título + texto: icono → 24 px → título → 4 px → texto */
+.out-grid .out, .feat-grid .feat { gap: 4px; }
+.out-grid .out .icon-tile, .feat-grid .feat .feat-ico { margin: 0 0 20px; }
+.out-grid .out h3, .feat-grid .feat h3 { margin: 0; }
+.out-grid .out p, .feat-grid .feat p { margin: 0; }
+
+/* Pestañas del temario: más grandes y "Bloque X" encima del nombre */
+.syl-tabs .syl-tab { flex-direction: column-reverse; justify-content: flex-end; gap: 4px; padding: 16px 28px; font-size: clamp(1.25rem, 1.8vw, 1.5rem); line-height: 1.1; letter-spacing: -0.01em; }
+.syl-tabs .syl-tab small { font-size: 13px; letter-spacing: 0; }
+@media (max-width: 640px) { .syl-tabs .syl-tab { padding: 12px 20px; font-size: 1.125rem; } .syl-tabs .syl-tab small { font-size: 12px; } }
+
+/* Aparición escalonada en todas las cards de icono + título + texto */
+.feat-grid.anim-ready .feat, .out-grid.anim-ready .out { opacity: 0; transform: translateY(16px); }
+.feat-grid.anim-ready.is-in .feat, .out-grid.anim-ready.is-in .out { animation: heroUp .55s cubic-bezier(.2,.8,.2,1) calc(var(--i, 0) * 70ms) both; }
+.intro.tw-wait .feat-grid.anim-ready .feat { animation: none !important; opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .feat-grid.anim-ready .feat, .out-grid.anim-ready .out { opacity: 1; transform: none; animation: none !important; }
+}
 </style>
 </head>
 <body>
@@ -972,10 +1474,11 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
 <main>
 
 <!-- HERO ────────────────────────────────────────── -->
-<section class="hero hero--stage">
-  <div class="wrap">
+<section class="hero hero--flux">
+  <div class="wrap hero-flux">
 
-    <div class="stage">
+    <div class="hero-fold">
+    <div class="hero-visual">
       <!-- creatividades flotantes: se construyen en HTML/CSS, no son imágenes -->
       <div class="fc fc--pay" style="--r:-3deg;--d:0s">
         <span class="fc-ico fc-ico--stripe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.594-7.305h.003z"/></svg></span>
@@ -991,11 +1494,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
         <span class="fc-txt"><b>Skill de UI</b><small>12 mejoras aplicadas</small></span>
       </div>
       <div class="fc fc--tag fc--vercel" style="--r:-4deg;--d:.4s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 22.525H0l12-21.05 12 21.05z"/></svg>Vercel</div>
-
-      <div class="alex">
-        <img src="assets/alex-hero.png" width="796" height="1300" alt="Alex Vaughtton, de NocodeHackers" fetchpriority="high" />
-      </div>
-
+      <img class="hero-alex" src="assets/alex-hero-v4.webp" width="1217" height="1500" alt="Alex Vaughtton, instructor del curso AI Product Builder" fetchpriority="high" />
       <div class="fc fc--mail" style="--r:3deg;--d:.3s">
         <span class="fc-ico fc-ico--resend"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.2 18.5V5.5h4.3a3.6 3.6 0 0 1 0 7.2H8.2M12.4 12.7l3.9 5.8"/></svg></span>
         <span class="fc-txt"><b>Email enviado</b><small>Bienvenida · Resend</small></span>
@@ -1007,7 +1506,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
       <div class="fc fc--tag fc--supa" style="--r:4deg;--d:1.4s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.362 9.354H12V.396a.396.396 0 0 0-.716-.233L2.203 12.424l-.401.562a1.04 1.04 0 0 0 .836 1.659H12V21.6a.396.396 0 0 0 .716.233l9.081-12.261.401-.562a1.04 1.04 0 0 0-.836-1.656z"/></svg>Supabase</div>
     </div>
 
-    <div class="hero-c">
+    <div class="hero-copy2">
       <div class="course-id course-id--c">
         <span class="badge" aria-hidden="true"><img src="assets/logo-mark.svg" alt="" /></span>
         <span class="course-id-txt"><b>AI Product Builder</b><small>Curso grabado</small></span>
@@ -1015,9 +1514,11 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
       <h1>Construye tu producto con IA y haz que funcione solo</h1>
       <p class="lead">10 retos para lanzar tu propio producto con usuarios, emails y pagos, y montar las skills, agentes y automatizaciones que lo hacen funcionar. Sin código previo.</p>
       <div class="hero-actions">
-        <a href="#precio" class="btn" data-checkout>Apuntarme hoy<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <button type="button" class="btn btn--secondary" data-trailer>Ver tráiler<svg class="ico" aria-hidden="true"><use href="#i-play-solid"/></svg></button>
+        <a href="#precio" class="btn" data-checkout><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>Apuntarme hoy</a>
+        <button type="button" class="btn btn--secondary" data-trailer><svg class="ico" aria-hidden="true"><use href="#i-play-solid"/></svg>Ver tráiler</button>
       </div>
+    </div>
+    </div>
 
       <div class="proof">
         <div class="avatars" aria-hidden="true"><img src="assets/avatars/a1.jpg" width="44" height="44" alt="" loading="eager" /><img src="assets/avatars/a2.jpg" width="44" height="44" alt="" loading="eager" /><img src="assets/avatars/a3.jpg" width="44" height="44" alt="" loading="eager" /><img src="assets/avatars/a4.jpg" width="44" height="44" alt="" loading="eager" /><img src="assets/avatars/a5.jpg" width="44" height="44" alt="" loading="eager" /><img src="assets/avatars/a6.jpg" width="44" height="44" alt="" loading="eager" /><img src="assets/avatars/a7.jpg" width="44" height="44" alt="" loading="eager" /></div>
@@ -1034,7 +1535,6 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
           </div>
         </div>
       </div>
-    </div>
 
   </div>
 </section>
@@ -1043,19 +1543,19 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
 <section id="para-quien">
   <div class="wrap">
     <div class="sec-head sec-head--c">
-      <span class="tag tag--white">¿Eres tú?</span>
+      <span class="tag tag--sec tag--orange">¿Eres tú?</span>
       <h2>Este curso es para ti si…</h2>
     </div>
     <div class="fit-grid2">
-      <article class="fit2"><span class="emo" aria-hidden="true">💡</span><p>Tienes ideas de producto, pero dependes de un equipo de desarrollo para lanzarlas.</p></article>
-      <article class="fit2"><span class="emo" aria-hidden="true">💬</span><p>Usas la IA como un chat al que hacer preguntas y quieres integrarla de verdad en tu forma de trabajar.</p></article>
-      <article class="fit2"><span class="emo" aria-hidden="true">🎨</span><p>Eres diseñador o perfil UX/UI y quieres llegar de la pantalla a un producto que funciona.</p></article>
-      <article class="fit2"><span class="emo" aria-hidden="true">🚀</span><p>Eres product manager o de innovación y quieres lanzar y validar ideas sin esperar a nadie.</p></article>
-      <article class="fit2"><span class="emo" aria-hidden="true">📣</span><p>Trabajas en marketing y quieres construir tus propias herramientas y automatizar informes y revisiones.</p></article>
-      <article class="fit2"><span class="emo" aria-hidden="true">💳</span><p>Eres emprendedor y necesitas un producto con usuarios, emails y cobros, sin contratar a nadie.</p></article>
-      <article class="fit2"><span class="emo" aria-hidden="true">🔁</span><p>Quieres un método que puedas repetir con cualquier idea nueva, en vez de empezar de cero cada vez.</p></article>
-      <article class="fit2"><span class="emo" aria-hidden="true">🤖</span><p>Quieres delegar tareas recurrentes en un agente y montar automatizaciones que trabajen por ti.</p></article>
-      <article class="fit2"><span class="emo" aria-hidden="true">🎯</span><p>Prefieres aprender haciendo, con retos cortos, un entregable en cada uno y a tu ritmo.</p></article>
+      <article class="fit2"><span class="emo" aria-hidden="true">💡</span><h3 class="fit-t">Tienes ideas, pero no equipo técnico</h3><p>Hoy dependes de desarrolladores para lanzarlas.</p></article>
+      <article class="fit2"><span class="emo" aria-hidden="true">💬</span><h3 class="fit-t">Usas la IA solo como un chat</h3><p>Quieres integrarla de verdad en tu forma de trabajar.</p></article>
+      <article class="fit2"><span class="emo" aria-hidden="true">🎨</span><h3 class="fit-t">Eres diseñador o UX/UI</h3><p>Quieres pasar de la pantalla a un producto que funciona.</p></article>
+      <article class="fit2"><span class="emo" aria-hidden="true">🚀</span><h3 class="fit-t">Eres product manager o de innovación</h3><p>Quieres lanzar y validar ideas sin esperar a nadie.</p></article>
+      <article class="fit2"><span class="emo" aria-hidden="true">📣</span><h3 class="fit-t">Trabajas en marketing</h3><p>Quieres tus propias herramientas e informes automáticos.</p></article>
+      <article class="fit2"><span class="emo" aria-hidden="true">💳</span><h3 class="fit-t">Eres emprendedor</h3><p>Necesitas usuarios, emails y cobros sin contratar a nadie.</p></article>
+      <article class="fit2"><span class="emo" aria-hidden="true">🔁</span><h3 class="fit-t">Buscas un método repetible</h3><p>Para cualquier idea nueva, sin empezar de cero cada vez.</p></article>
+      <article class="fit2"><span class="emo" aria-hidden="true">🤖</span><h3 class="fit-t">Quieres delegar en agentes</h3><p>Y montar automatizaciones que trabajen por ti.</p></article>
+      <article class="fit2"><span class="emo" aria-hidden="true">🎯</span><h3 class="fit-t">Aprendes haciendo</h3><p>Retos cortos, un entregable en cada uno y a tu ritmo.</p></article>
     </div>
     <p class="fit-close2">Si te has visto reflejado en <b>algún caso</b>, este curso es para ti.</p>
   </div>
@@ -1066,7 +1566,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
 <section class="intro" id="presentamos">
   <div class="wrap">
     <div class="intro-head">
-      <span class="tag tag--pink">Presentamos…</span>
+      <span class="tag tag--sec tag--purple">Presentamos…</span>
       <h2>AI Product Builder</h2>
       <p class="lead">El curso grabado para construir tu producto con IA y montar el sistema que lo hace funcionar.</p>
     </div>
@@ -1144,31 +1644,39 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
 <section id="curso">
   <div class="wrap">
     <div class="sec-head">
-      <span class="tag">¿Cómo vas a aprender?</span>
+      <span class="tag tag--sec tag--pink40">¿Cómo vas a aprender?</span>
       <h2>Construir y trabajar mejor con IA, en un solo recorrido</h2>
       <p class="lead">La mayoría de formaciones en IA eligen un lado: o te enseñan a construir productos, o te enseñan a ser más productivo. Este curso hace las dos cosas sobre un mismo hilo.</p>
     </div>
 
     <div class="blocks">
       <article class="block block--web">
-        <span class="tag tag--web">Bloque 1 · Construir</span>
-        <h3>De la idea a un producto online que cobra</h3>
-        <p>Diseñas, construyes y lanzas tu propio producto, siempre sobre el mismo proyecto, que crece reto a reto.</p>
-        <ul>
+        <div class="block-l">
+          <span class="tag tag--block tag--pink">Bloque 1 · Construir</span>
+          <h3>De la idea a un producto online que cobra</h3>
+        </div>
+        <div class="block-r">
+          <p>Diseñas, construyes y lanzas tu propio producto, siempre sobre el mismo proyecto, que crece reto a reto.</p>
+          <ul>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg>Spec, diseño y design system</li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg>Web publicada en una URL real</li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg>Usuarios, base de datos, emails y pagos</li>
         </ul>
+        </div>
       </article>
       <article class="block block--auto">
-        <span class="tag tag--auto">Bloque 2 · Operar</span>
-        <h3>El sistema de trabajo que hace funcionar tu producto</h3>
-        <p>Llevas la IA a tu día a día con skills, agentes y automatizaciones aplicados a tu producto y a tu trabajo.</p>
-        <ul>
+        <div class="block-l">
+          <span class="tag tag--block tag--purple">Bloque 2 · Operar</span>
+          <h3>El sistema de trabajo que hace funcionar tu producto</h3>
+        </div>
+        <div class="block-r">
+          <p>Llevas la IA a tu día a día con skills, agentes y automatizaciones aplicados a tu producto y a tu trabajo.</p>
+          <ul>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg>Skills para tus tareas repetitivas</li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg>Un agente con una tarea delegada</li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg>Dos automatizaciones funcionando</li>
         </ul>
+        </div>
       </article>
     </div>
 
@@ -1183,7 +1691,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
 <section class="sec-alt" id="temario">
   <div class="wrap">
     <div class="sec-head">
-      <span class="tag tag--white">Temario</span>
+      <span class="tag tag--sec tag--orange">Temario</span>
       <h2>10 retos. Un entregable en cada uno.</h2>
       <p class="lead">Cada reto agrupa entre 3 y 5 píldoras de vídeo de 5 a 10 minutos y termina con un ejercicio práctico.</p>
     </div>
@@ -1402,7 +1910,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
 <section class="community" id="comunidad">
   <div class="wrap">
     <div class="sec-head">
-      <span class="tag tag--pink">Comunidad privada</span>
+      <span class="tag tag--sec tag--purple">Comunidad privada</span>
       <h2>No lo haces solo</h2>
       <p class="lead">Entras en el grupo privado de Telegram de AI Product Builder: pregunta, comparte lo que construyes y sigue aprendiendo con gente que está en lo mismo.</p>
     </div>
@@ -1450,7 +1958,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
       <img src="assets/certificado.jpg" alt="Certificado de finalización de AI Product Builder de NocodeHackers" width="1400" height="989" loading="lazy">
     </figure>
     <div class="cert-copy">
-      <span class="tag tag--white">Certificado</span>
+      <span class="tag tag--sec tag--pink40">Certificado</span>
       <h2>Consigue tu certificado de AI Product Builder</h2>
       <ul class="cert-list">
         <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Completa los 10 módulos y construye tu propio producto de principio a fin.</span></li>
@@ -1465,7 +1973,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
 <section class="instructor" id="instructor">
   <div class="wrap ins-grid">
     <div class="ins-copy">
-      <span class="tag tag--pink">Tu instructor</span>
+      <span class="tag tag--sec tag--orange">Tu instructor</span>
       <h2>Alex Vaughtton</h2>
       <p>Alejandro Bernardo Díaz, más conocido como Alex Vaughtton, es el fundador de NocodeHackers: ingeniero mecánico, con una pasión inagotable por crear e innovar.</p>
       <p>Empezó diseñando farolas y acabó innovando dentro de ABANCA, donde se metió en el mundo del intraemprendimiento y descubrió el potencial del movimiento No-code. Lo que empezó como un side-project es hoy una de las mayores comunidades de No-code de habla hispana, y es autor del libro «Revolución NO-CODE».</p>
@@ -1480,7 +1988,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
       </ul>
     </div>
     <figure class="ins-photo">
-      <img src="assets/alex-hero.png" alt="Alex Vaughtton, fundador de NocodeHackers" width="796" height="1300" loading="lazy">
+      <img src="assets/alex-instructor.webp" alt="Alex Vaughtton, fundador de NocodeHackers" width="1020" height="1300" loading="lazy">
     </figure>
   </div>
 </section>
@@ -1489,7 +1997,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
 <section class="sec-alt" id="testimonios">
   <div class="wrap">
     <div class="sec-head">
-      <span class="tag tag--white">Testimonios</span>
+      <span class="tag tag--sec tag--purple">Testimonios</span>
       <h2>Lo que cuentan los alumnos</h2>
     </div>
     <div class="tm-grid">
@@ -1571,7 +2079,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
 <section id="resultados">
   <div class="wrap">
     <div class="sec-head">
-      <span class="tag">Qué te llevas</span>
+      <span class="tag tag--sec tag--pink40">Qué te llevas</span>
       <h2>Al terminar, tienes algo que funciona</h2>
       <p class="lead">Sin fluff. Cada reto deja un resultado verificable: una URL, un pago de prueba, una skill funcionando.</p>
     </div>
@@ -1607,7 +2115,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
       <img src="assets/equipo.jpg" alt="Alumnos y equipo de NocodeHackers en uno de sus eventos presenciales" width="712" height="712" loading="lazy">
     </figure>
     <div class="about-copy">
-      <span class="tag tag--white">Quiénes somos</span>
+      <span class="tag tag--sec tag--orange">Quiénes somos</span>
       <h2>Lo que enseñamos es lo que usamos cada día</h2>
       <p class="about-lead">NocodeHackers es una de las mayores escuelas de No-Code de habla hispana, automatización e IA, con más de 40.000 alumnos formados.</p>
       <p class="about-p">Después de más de 6 años formando a miles de alumnos, hemos visto cómo nuestras formaciones han ayudado a <mark>emprendedores</mark> a hacer más eficientes sus negocios, a <mark>freelancers</mark> a ofrecer servicios de automatización y crear productos digitales para sus clientes, y a <mark>empleados</mark> a reducir trabajo manual, mejorar procesos y aumentar su valor dentro de sus empresas.</p>
@@ -1623,7 +2131,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
 <section id="precio">
   <div class="wrap price-wrap">
     <div class="price-head">
-      <span class="tag">Precio</span>
+      <span class="tag tag--sec tag--purple">Precio</span>
       <h2>Invierte en tu futuro</h2>
       <p class="lead">Un único pago, sin cuotas ni suscripciones. Empieza hoy y avanza a tu ritmo.</p>
     </div>
@@ -1634,7 +2142,6 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
         <div class="price"><s class="price-old" aria-label="Precio anterior 200 euros">200 €</s><span class="price-new" aria-label="Precio ahora 100 euros">100 €</span></div>
         <span class="price-off">−50 % Black Friday</span>
         <p>Acceso completo al curso AI Product Builder.</p>
-        <a href="#" class="btn btn--block" data-checkout>Empezar el curso<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
       <ul class="plan-r">
         <li><svg aria-hidden="true"><use href="#i-check"/></svg>10 módulos con entregable</li>
@@ -1645,6 +2152,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
         <li><svg aria-hidden="true"><use href="#i-check"/></svg>Comunidad privada de Telegram</li>
         <li><svg aria-hidden="true"><use href="#i-check"/></svg>Certificado de finalización de NocodeHackers</li>
       </ul>
+      <a href="#" class="btn btn--block plan-cta" data-checkout>Empezar el curso<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </article>
 
     <p class="price-note">¿Quieres formar a tu equipo? Hay licencias para equipos con una sesión en directo de 90 minutos. <a href="mailto:hola@nocodehackers.es?subject=Curso%20De%20idea%20a%20producto%20con%20IA%20-%20Equipos">Preparar propuesta</a>. ¿Como preparación o continuación de nuestros talleres y programas? <a href="mailto:hola@nocodehackers.es?subject=Curso%20De%20idea%20a%20producto%20con%20IA%20-%20Complemento">Escríbenos</a>.</p>
@@ -1675,7 +2183,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
 <section id="faq">
   <div class="wrap">
     <div class="sec-head">
-      <span class="tag tag--pink">FAQ</span>
+      <span class="tag tag--sec tag--pink40">FAQ</span>
       <h2>Nuestras preguntas frecuentes</h2>
     </div>
     <div class="faq">
@@ -1743,7 +2251,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
 <section>
   <div class="wrap">
     <div class="cta-final on-dark">
-      <span class="tag tag--pink">Curso grabado</span>
+      <span class="tag tag--sec tag--orange">Curso grabado</span>
       <h2>Tu idea, online y cobrando</h2>
       <p>Construye tu producto y el sistema de trabajo con IA que lo hace funcionar. 10 retos, a tu ritmo, sin código previo.</p>
       <div class="row">
@@ -1848,10 +2356,11 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
     }
   });
 
-  // Pestañas del temario (Construir / Operar)
+  // Pestañas del temario (Construir / Operar): muestran un bloque cada vez; la barra es sticky
   (function () {
     var tabs = Array.prototype.slice.call(document.querySelectorAll('.syl-tab'));
-    if (!tabs.length) return;
+    var bar = document.querySelector('.syl-tabs');
+    if (!tabs.length || !bar) return;
     function select(tab) {
       tabs.forEach(function (t) {
         var on = t === tab;
@@ -1859,6 +2368,14 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
         t.tabIndex = on ? 0 : -1;
         document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
       });
+      // si la barra está pegada arriba, vuelve al inicio del bloque para verlo desde el primer módulo
+      var hdr = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hdr')) || 128;
+      var list = bar.parentElement;
+      var gap = parseFloat(getComputedStyle(bar).paddingTop) || 0;
+      var top = list.getBoundingClientRect().top - gap;
+      if (top < hdr) {
+        window.scrollTo({ top: top + window.scrollY - hdr, behavior: 'smooth' });
+      }
     }
     tabs.forEach(function (t, i) {
       t.addEventListener('click', function () { select(t); });
@@ -1867,6 +2384,99 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
         var n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
         select(n); n.focus();
       });
+    });
+  })();
+</script>
+<script>
+  /* Hero oscuro arriba del todo; pasa a blanco en cuanto se hace scroll */
+  (function () {
+    var root = document.documentElement;
+    function update() { root.classList.toggle('is-top', window.scrollY < 8); }
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+  })();
+  (function () {
+    var hdr = document.querySelector('header.nav');
+    if (!hdr) return;
+    function setH() { document.documentElement.style.setProperty('--hdr', hdr.offsetHeight + 'px'); }
+    setH();
+    if ('ResizeObserver' in window) new ResizeObserver(setH).observe(hdr); else window.addEventListener('resize', setH);
+  })();
+  (function () {
+    var c = document.querySelector('.collage');
+    if (!c || !('IntersectionObserver' in window)) return;
+    c.classList.add('anim-ready');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { c.classList.add('is-in'); io.disconnect(); } });
+    }, { threshold: 0.3 });
+    io.observe(c);
+  })();
+  (function () {
+    var g = document.querySelector('.guar-seal');
+    if (!g || !('IntersectionObserver' in window)) return;
+    g.classList.add('stamp-ready');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { g.classList.add('is-in'); io.disconnect(); } });
+    }, { threshold: 0.5 });
+    io.observe(g);
+  })();
+  (function () {
+    var sec = document.getElementById('presentamos');
+    var h = sec && sec.querySelector('.intro-head h2');
+    if (!h || !('IntersectionObserver' in window)) return;
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var text = h.textContent;
+    h.setAttribute('aria-label', text);
+    h.textContent = '';
+    var chars = [];
+    for (var i = 0; i < text.length; i++) {
+      var sp = document.createElement('span');
+      sp.className = 'tw-ch'; sp.setAttribute('aria-hidden', 'true');
+      sp.textContent = text[i];
+      h.appendChild(sp); chars.push(sp);
+    }
+    sec.classList.add('tw-wait');
+    h.classList.add('tw-start');
+    function type() {
+      var n = 0;
+      h.classList.remove('tw-start');
+      (function step() {
+        if (n > 0) chars[n - 1].classList.remove('cur');
+        if (n < chars.length) {
+          chars[n].classList.add('on', 'cur');
+          n++;
+          setTimeout(step, text[n - 1] === ' ' ? 40 : 75);
+        } else {
+          chars[n - 1].classList.add('cur');
+          setTimeout(function () { sec.classList.remove('tw-wait'); }, 150);
+          setTimeout(function () { chars[n - 1].classList.remove('cur'); }, 1800);
+        }
+      })();
+    }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { io.disconnect(); setTimeout(type, 250); } });
+    }, { threshold: 0.6 });
+    io.observe(h);
+  })();
+  (function () {
+    var g = document.querySelector('.fit-grid2');
+    if (!g || !('IntersectionObserver' in window)) return;
+    Array.prototype.forEach.call(g.children, function (c, i) { c.style.setProperty('--i', i); });
+    g.classList.add('anim-ready');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { g.classList.add('is-in'); io.disconnect(); } });
+    }, { threshold: 0.15 });
+    io.observe(g);
+  })();
+  (function () {
+    if (!('IntersectionObserver' in window)) return;
+    Array.prototype.forEach.call(document.querySelectorAll('.feat-grid, .out-grid'), function (g) {
+      Array.prototype.forEach.call(g.children, function (c, i) { c.style.setProperty('--i', i); });
+      g.classList.add('anim-ready');
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { g.classList.add('is-in'); io.disconnect(); } });
+      }, { threshold: 0.15 });
+      io.observe(g);
     });
   })();
 </script>
